@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="190px" height="54px" viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>LOD-Left</title>
+    <desc>Created with Sketch.</desc>
+    <g id="LOD-Left" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
+        <path id="Line" d="M47,30.5 L-2,30.5 L-2,24.5 L47,24.5 L47,10.5 L81,27.5 L47,44.5 L47,30.5 Z" fill="#000000" fill-rule="nonzero"></path>
+        <text id="LOD" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="45" font-weight="400" fill="#000000">
+            <tspan x="90.24" y="44">LOD</tspan>
+        </text>
+    </g>
+</svg>

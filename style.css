@@ -1,0 +1,243 @@
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-size:1em;
+}
+
+.demo-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+.demo-layout .mdl-layout__header .mdl-layout__drawer-button {
+  color: rgba(0, 0, 0, 0.54);
+}
+.mdl-layout__drawer .avatar {
+  margin-bottom: 16px;
+}
+.demo-drawer {
+  border: none;
+}
+/* iOS Safari specific workaround */
+.demo-drawer .mdl-menu__container {
+  z-index: -1;
+}
+.demo-drawer .demo-navigation {
+  z-index: -2;
+}
+/* END iOS Safari specific workaround */
+.demo-drawer .mdl-menu .mdl-menu__item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.demo-drawer-header {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 16px;
+  height: 151px;
+}
+.demo-avatar-dropdown {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.demo-navigation {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.demo-layout .demo-navigation .mdl-navigation__link {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 500;
+}
+.demo-layout .demo-navigation .mdl-navigation__link:hover {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+.demo-navigation .mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.56);
+  margin-right: 16px;
+}
+
+.demo-content {
+  max-width: 1080px;
+}
+
+
+
+/* body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.icon {
+  font-size:1.5em;
+} */
+
+.p-3 {
+  padding:3em;
+}
+.pt-1 {
+  padding-top:1em;
+}
+
+.bold {
+  font-weight:700;
+}
+.text-left {
+  text-align:left;
+}
+.text-right {
+  text-align:right;
+}
+.w-100 {
+  width:100%;
+}
+.d-flex-center {
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.d-flex-space-between {
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+#graphic-container {
+  width:100%;
+  margin:auto;
+  display:block;
+}
+
+#view-btn-group {
+width:100%;
+}
+
+.controls {
+  width:640px;
+  height:60px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:1.4em;
+  font-weight:300;
+}
+
+#diagram {
+  width:640px;
+  height:360px;
+  border:1px solid grey;
+  border-radius:8px;
+  margin:auto;
+  position:relative;
+}
+
+.LOD {
+  width: 80px;
+  position:absolute;
+  right:10px;
+  top:171px;
+}
+
+.M {
+  width:24px;
+  height:62px;
+  transition: left 2s, top 2s, opacity 2s, transform 2s;
+  position:absolute;
+}
+
+.L {
+  width:24px;
+  height:62px;
+  transition: left 2s, top 2s, opacity 2s, transform 2s;
+  position:absolute;
+}
+
+#ML {
+  left:54px;
+  top:209px;
+  opacity:0.3;
+  transform: rotate(45deg);
+}
+
+#MR {
+  left:84px;
+  top:234px;
+  transform: rotate(45deg);
+}
+
+#LL {
+  left:154px;
+  top:190px;
+  transform: rotate(225deg);
+}
+
+#LR {
+  left:120px;
+  top:165px;
+  opacity:0.3;
+  transform: rotate(225deg);
+}
+
+.icon {
+  margin-left:5px;
+  margin-right:5px;
+  cursor:pointer;
+}
+
+.figure-list {
+  display:flex;
+  justify-content:space-between;
+  margin:auto;
+  margin-top:3em;
+}
