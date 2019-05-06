@@ -1,222 +1,177 @@
-const chasse_to_right = [
-  {
-    text:"Begin with weight on right foot",
-    ml: [54,209,45,0.3],
-    mr: [84,234,45,1],
-    ll: [154,190,225,1],
-    lr: [120,165,225,0.3]
-  },
-  {
-    text:"1. LF fwd (HT),commence to rise end of 1",
-    ml: [123,132,0,1],
-    mr: [84,234,45,0.3],
-    ll: [154,190,225,0.3],
-    lr: [163,67,180,1]
-  },
-  {
-    text:"2. RF to side (T), continue to rise",
-    ml: [123,132,0,0.3],
-    mr: [297,132,0,1],
-    ll: [320,67,180,1],
-    lr: [163,67,180,0.3]
-  },
-  {
-    text:"2&. LF closes to RF (T), continue to rise",
-    ml: [285,155,-45,1],
-    mr: [320,125,-45,0.3],
-    ll: [300,67,135,0.3],
-    lr: [265,95,135,1]
-  },
-  {
-    text:"3. RF to side & slightly back (TH), continue to rise",
-    ml: [285,155,-45,0.3],
-    mr: [425,122,-45,1],
-    ll: [395,62,135,1],
-    lr: [265,95,135,0.3]
-  },
-  {
-  text:"3&. Collect LF and lower end of 3",
-  ml: [390,150,-45,0.3],
-  mr: [425,122,-45,1],
-  ll: [395,62,135,1],
-  lr: [360,90,135,0.3]
-  }
-];
 
-
-const current = {
-  step: 0,
-  step_total: chasse_to_right.length,
-  text:chasse_to_right[0].text,
-  ml: [54,209,45,0.3],
-  mr: [84,234,45,1],
-  ll: [54,209,45,1],
-  lr: [120,165,225,0.3],
-
-  prev() {
-    if (current.step > 0) {
-      current.step -= 1;
-      current.text = chasse_to_right[current.step].text;
-      current.ml = chasse_to_right[current.step].ml;
-      current.mr = chasse_to_right[current.step].mr;
-      current.ll = chasse_to_right[current.step].ll;
-      current.lr = chasse_to_right[current.step].lr;
-      bind();
-      console.log("prev");
-    } else{
-      console.log("no more");
-    }
-  },
-
-  next() {
-    if (current.step < current.step_total-1) {
-      console.log("next");
-      current.step += 1;
-      current.text = chasse_to_right[current.step].text;
-      current.ml = chasse_to_right[current.step].ml;
-      current.mr = chasse_to_right[current.step].mr;
-      current.ll = chasse_to_right[current.step].ll;
-      current.lr = chasse_to_right[current.step].lr;
-      bind();
-    } else{
-      console.log("no more");
-    }
-  },
-
-  replay() {
-        console.log("next");
-        current.step = 0;
-        current.text = chasse_to_right[0].text;
-        current.ml = chasse_to_right[0].ml;
-        current.mr = chasse_to_right[0].mr;
-        current.ll = chasse_to_right[0].ll;
-        current.lr = chasse_to_right[0].lr;
-        bind();
-      }
-
-};
+Vue.component('figure-item', {
+  props:['figure'],
+  template: `
+  <li class="mdl-list__item" v:on-click="$emit('change')">
+  <span class="mdl-list__item-primary-content">
+  {{figure.name}}
+  </span>
+  </li>`
+})
 
 var app = new Vue({
   el: "#app",
   data: {
-    dance: "Waltz",
-    figure_name: "Chasse to Right",
+    current_figure: natural_turn,
+    text: null,
+    instruction_both: "both_text",
+    instruction_lead: "lead text",
+    instruction_follow: "follow text",
+    ml: [54,209,45,0.3],
+    mr: [84,234,45,1],
+    ll: [54,209,45,1],
+    lr: [120,165,225,0.3],
+    newcomer_figures: waltz_newcomer_figures,
+    bronze_figures: waltz_bronze_figures,
+    silver_figures: waltz_silver_figures,
+    gold_figures: waltz_gold_figures,
+    lead_active: true,
+    follow_active: true,
+    step:0,
+    step_total:999,
     style: "Standard",
-    instruction: current.text,
-    waltz_newcomer_figures: [
-       'Prep Step',
-       'Natural Turn',
-       'Natural Spin Turn',
-       'Reverse Turn',
-       'Change Step',
-       'Whisk',
-       'Chasse from Promenade'
-    ],
-    waltz_bronze_figures: [
-       'Closed Impetus',
-       'Hesitation Change',
-       'Outside Change',
-       'Reverse Corte',
-       'Back Whisk',
-       'Basic Weave',
-       'Double Reverse Spin',
-       'Reverse Pivot',
-       'Back Lock',
-       'Progressive Chasse to Right'
-    ],
-    waltz_silver_figures: [
-       'Weave from Promenade',
-       'Closed Telemark',
-       'Open Telemark',
-       'Open Impetus',
-       'Closed Hesitation',
-       'Wing',
-       'Outside Spin',
-       'Turning Lock to L',
-       'Drag Hesitation'
-    ],
-    waltz_gold_figures: [
-       'Left Whisk',
-       'Contra Check',
-       'Closed Wing',
-       'Turning Lock to Right',
-       'Fallaway Reverse & Slip Pivot',
-       'Hover Corte',
-       'Turning Lock to Right'
-    ],
-  }
+    dance: "Waltz"
+  },
+  methods: {
+    change_dance: function(dance) {
+      this.dance = dance;
+      switch(dance) {
+        case "Slow Waltz":
+          this.change_figure(waltz_all_figures[0]);
+          this.newcomer_figures = waltz_all_figures.filter(figure => figure.level == "Newcomer");
+          this.bronze_figures = waltz_all_figures.filter(figure => figure.level == "Bronze");
+          this.silver_figures = waltz_all_figures.filter(figure => figure.level == "Silver");
+          this.gold_figures = waltz_all_figures.filter(figure => figure.level == "Gold");
+        break;
 
+        case "Tango":
+          this.change_figure(tango_all_figures[0]);
+          this.newcomer_figures = tango_all_figures.filter(figure => figure.level == "Newcomer");
+          this.bronze_figures = tango_all_figures.filter(figure => figure.level == "Bronze");
+          this.silver_figures = tango_all_figures.filter(figure => figure.level == "Silver");
+          this.gold_figures = tango_all_figures.filter(figure => figure.level == "Gold");
+        break;
+
+        case "Viennese Waltz":
+          this.change_figure(vwaltz_all_figures[0]);
+          this.newcomer_figures = vwaltz_all_figures.filter(figure => figure.level == "Newcomer");
+          this.bronze_figures = vwaltz_all_figures.filter(figure => figure.level == "Bronze");
+          this.silver_figures = vwaltz_all_figures.filter(figure => figure.level == "Silver");
+          this.gold_figures = vwaltz_all_figures.filter(figure => figure.level == "Gold");
+        break;
+
+        case "Slow Foxtrot":
+          this.change_figure(foxtrot_all_figures[0]);
+          this.newcomer_figures = foxtrot_all_figures.filter(figure => figure.level == "Newcomer");
+          this.bronze_figures = foxtrot_all_figures.filter(figure => figure.level == "Bronze");
+          this.silver_figures = foxtrot_all_figures.filter(figure => figure.level == "Silver");
+          this.gold_figures = foxtrot_all_figures.filter(figure => figure.level == "Gold");
+        break;
+
+        case "Quickstep":
+          this.change_figure(quickstep_all_figures[0]);
+          this.newcomer_figures = quickstep_all_figures.filter(figure => figure.level == "Newcomer");
+          this.bronze_figures = quickstep_all_figures.filter(figure => figure.level == "Bronze");
+          this.silver_figures = quickstep_all_figures.filter(figure => figure.level == "Silver");
+          this.gold_figures = quickstep_all_figures.filter(figure => figure.level == "Gold");
+        break;
+      }
+    },
+    change_figure: function (new_figure) {
+      this.current_figure = new_figure;
+      this.instruction_both = new_figure.data[0].text[0];
+      this.instruction_lead = new_figure.data[0].text[1];
+      this.instruction_follow = new_figure.data[0].text[2];
+      this.step = 0;
+      this.step_total = new_figure.data.length;
+      this.ml = new_figure.data[0].ml;
+      this.mr = new_figure.data[0].mr;
+      this.ll = new_figure.data[0].ll;
+      this.lr = new_figure.data[0].lr;
+      this.update_feet_position();
+    },
+    next: function () {
+      if (app.step < app.step_total-1) {
+        app.step += 1;
+
+        app.instruction_both = this.current_figure.data[app.step].text[0];
+        app.instruction_lead = this.current_figure.data[app.step].text[1];
+        app.instruction_follow = this.current_figure.data[app.step].text[2];
+
+        app.ml = this.current_figure.data[app.step].ml;
+        app.mr = this.current_figure.data[app.step].mr;
+        app.ll = this.current_figure.data[app.step].ll;
+        app.lr = this.current_figure.data[app.step].lr;
+        this.update_feet_position();
+      }
+    },
+    prev: function () {
+      if (app.step > 0) {
+        app.step -= 1;
+
+        app.instruction_both = this.current_figure.data[app.step].text[0];
+        app.instruction_lead = this.current_figure.data[app.step].text[1];
+        app.instruction_follow = this.current_figure.data[app.step].text[2];
+
+        app.ml = this.current_figure.data[app.step].ml;
+        app.mr = this.current_figure.data[app.step].mr;
+        app.ll = this.current_figure.data[app.step].ll;
+        app.lr = this.current_figure.data[app.step].lr;
+        this.update_feet_position();
+      }
+    },
+    replay: function () {
+      app.step = 0;
+
+      app.instruction_both = this.current_figure.data[app.step].text[0];
+      app.instruction_lead = this.current_figure.data[app.step].text[1];
+      app.instruction_follow = this.current_figure.data[app.step].text[2];
+
+      app.ml = this.current_figure.data[0].ml;
+      app.mr = this.current_figure.data[0].mr;
+      app.ll = this.current_figure.data[0].ll;
+      app.lr = this.current_figure.data[0].lr;
+      this.update_feet_position();
+    },
+    lead: function() {
+      app.lead_active = true;
+      app.follow_active = false;
+    },
+    follow: function() {
+      app.lead_active = false;
+      app.follow_active = true;
+    },
+    both: function() {
+      app.lead_active = true;
+      app.follow_active = true;
+    },
+    update_feet_position: function() {
+      ml_visual.style.left = app.ml[0];
+      ml_visual.style.top = app.ml[1];
+      ml_visual.style.transform = "rotate("+app.ml[2]+"deg)";
+      ml_visual.style.opacity =app.ml[3];
+
+      mr_visual.style.left = app.mr[0];
+      mr_visual.style.top = app.mr[1];
+      mr_visual.style.transform = "rotate("+app.mr[2]+"deg)";
+      mr_visual.style.opacity =app.mr[3];
+
+      ll_visual.style.left = app.ll[0];
+      ll_visual.style.top = app.ll[1];
+      ll_visual.style.transform = "rotate("+app.ll[2]+"deg)";
+      ll_visual.style.opacity =app.ll[3];
+
+      lr_visual.style.left = app.lr[0];
+      lr_visual.style.top = app.lr[1];
+      lr_visual.style.transform = "rotate("+app.lr[2]+"deg)";
+      lr_visual.style.opacity =app.lr[3];
+    }
+  }
 })
 
+const ml_visual = document.getElementById("ML");
+const mr_visual = document.getElementById("MR");
+const ll_visual = document.getElementById("LL");
+const lr_visual = document.getElementById("LR");
 
-const btn_lead = document.getElementById("btn-lead");
-const btn_follow = document.getElementById("btn-follow");
-const btn_both = document.getElementById("btn-both");
-const ml = document.getElementById("ML");
-const mr = document.getElementById("MR");
-const ll = document.getElementById("LL");
-const lr = document.getElementById("LR");
-
-document.getElementById("prev").onclick = current.prev;
-document.getElementById("next").onclick = current.next;
-document.getElementById("replay").onclick = current.replay;
-
-
-const toggle = {
-  lead() {
-    ll.style.display = "none";
-    lr.style.display = "none";
-    ml.style.display = "block";
-    mr.style.display = "block";
-    btn_lead.classList.add("mdl-button--colored");
-    btn_follow.classList.remove("mdl-button--colored");
-    btn_both.classList.remove("mdl-button--colored");
-  },
-  follow() {
-    ll.style.display = "block";
-    lr.style.display = "block";
-    ml.style.display = "none";
-    mr.style.display = "none";
-    btn_lead.classList.remove("mdl-button--colored");
-    btn_follow.classList.add("mdl-button--colored");
-    btn_both.classList.remove("mdl-button--colored");
-  },
-  both() {
-    ll.style.display = "block";
-    lr.style.display = "block";
-    ml.style.display = "block";
-    mr.style.display = "block";
-    btn_lead.classList.remove("mdl-button--colored");
-    btn_follow.classList.remove("mdl-button--colored");
-    btn_both.classList.add("mdl-button--colored");
-  }
-}
-
-btn_lead.onclick = toggle.lead;
-btn_follow.onclick = toggle.follow;
-btn_both.onclick = toggle.both;
-
-function bind() {
-
-  app.instruction = current.text;
-
-  ml.style.left = current.ml[0];
-  ml.style.top = current.ml[1];
-  ml.style.transform = "rotate("+current.ml[2]+"deg)";
-  ml.style.opacity =current.ml[3];
-
-  mr.style.left = current.mr[0];
-  mr.style.top = current.mr[1];
-  mr.style.transform = "rotate("+current.mr[2]+"deg)";
-  mr.style.opacity =current.mr[3];
-
-  ll.style.left = current.ll[0];
-  ll.style.top = current.ll[1];
-  ll.style.transform = "rotate("+current.ll[2]+"deg)";
-  ll.style.opacity =current.ll[3];
-
-  lr.style.left = current.lr[0];
-  lr.style.top = current.lr[1];
-  lr.style.transform = "rotate("+current.lr[2]+"deg)";
-  lr.style.opacity =current.lr[3];
-}
+app.change_figure(natural_turn);

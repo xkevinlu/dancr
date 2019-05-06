@@ -119,6 +119,12 @@ html, body {
   font-size:1.5em;
 } */
 
+.active {
+  background-color: red;
+}
+.border {
+  border:1px solid black;
+}
 .p-3 {
   padding:3em;
 }
@@ -154,16 +160,27 @@ html, body {
 
 #graphic-container {
   width:100%;
+  padding:0em 0em;
   margin:auto;
   display:block;
+}
+@media screen and (min-width: 640px) {
+  #graphic-container {
+    padding:0em 2em;
+  }
+}
+
+.instruction {
+  font-size:0.8em;
 }
 
 #view-btn-group {
 width:100%;
+min-width:250px;
 }
 
 .controls {
-  width:640px;
+  width:100%;
   height:60px;
   margin:auto;
   display:flex;
@@ -174,7 +191,7 @@ width:100%;
 }
 
 #diagram {
-  width:640px;
+  width:100%;
   height:360px;
   border:1px solid grey;
   border-radius:8px;
@@ -190,43 +207,37 @@ width:100%;
 }
 
 .M {
-  width:24px;
-  height:62px;
+  width:22px;
   transition: left 2s, top 2s, opacity 2s, transform 2s;
   position:absolute;
 }
 
 .L {
-  width:24px;
-  height:62px;
+  width:20px;
   transition: left 2s, top 2s, opacity 2s, transform 2s;
   position:absolute;
 }
 
 #ML {
-  left:54px;
-  top:209px;
+  left:0px;
+  top:0px;
   opacity:0.3;
-  transform: rotate(45deg);
 }
 
 #MR {
-  left:84px;
-  top:234px;
-  transform: rotate(45deg);
+  left:30px;
+  top:0px;
 }
 
 #LL {
-  left:154px;
-  top:190px;
-  transform: rotate(225deg);
+  left:60px;
+  top:0px;
 }
 
 #LR {
-  left:120px;
-  top:165px;
+  left:90px;
+  top:0px;
   opacity:0.3;
-  transform: rotate(225deg);
 }
 
 .icon {
@@ -235,9 +246,35 @@ width:100%;
   cursor:pointer;
 }
 
+.next-prev {
+  min-width:140px;
+  text-align:right;
+}
 .figure-list {
+  width:100%;
   display:flex;
+  flex-wrap: wrap;
   justify-content:space-between;
-  margin:auto;
-  margin-top:3em;
+  margin: 3em 2em 0em 2em;
+}
+
+.col-sm-12 {
+  width:100%;
+}
+@media screen and (min-width: 640px) {
+  .col-3 {
+    width:25%;
+  }`
+}
+
+.list-head {
+  padding-left:16px;
+}
+
+.mdl-list__item span{
+  cursor:pointer;
+}
+
+.mdl-list__item span:hover{
+  color:#E10071;
 }
