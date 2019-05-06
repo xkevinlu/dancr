@@ -81,18 +81,7 @@
           </div>
           <div class="controls d-flex-space-between text-right pt-1">
             <div class="w-100 ">
-              <h4 class="text-left bold">{{current_figure.name}}</h4>
-            </div>
-            <div id="view-btn-group">
-              <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !follow_active }" id="btn-lead" v-on:click="lead()">
-                LEAD
-              </button>
-              <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !lead_active }" id="btn-follow" v-on:click="follow()">
-                FOLLOW
-              </button>
-              <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
-                BOTH
-              </button>
+              <h4 class="text-center bold">{{current_figure.name}}</h4>
             </div>
 
         </div>
@@ -156,19 +145,29 @@
               </g>
             </svg>
           </div>
-
         </div>
 
-        <div class="controls">
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
-          <div class="view-btn-group">
+          <div class="instruction">
           <span class="instruction" v-show="!follow_active"> {{instruction_lead}} </span>
           <span class="instruction" v-show="!lead_active"> {{instruction_follow}} </span>
           <span class="instruction" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
+          <div class="controls">
           <div class="next-prev">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="fas fa-backward"></i></button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="fas fa-forward"></i></button>
+          </div>
+          <div id="view-btn-group">
+            <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !follow_active }" id="btn-lead" v-on:click="lead()">
+              M
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !lead_active }" id="btn-follow" v-on:click="follow()">
+              L
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
+              BOTH
+            </button>
           </div>
         </div>
 
