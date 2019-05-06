@@ -260,6 +260,8 @@ margin-bottom:1em;
 .next-prev {
   width:100%;
   text-align:center;
+  position:absolute;
+  bottom:5px;
 }
 .figure-list {
   width:100%;

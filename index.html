@@ -154,6 +154,11 @@
               </g>
             </svg>
           </div>
+          <div class="next-prev">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="fas fa-backward"></i></button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="fas fa-forward"></i></button>
+          </div>
         </div>
 
           <div class="instruction">
@@ -162,11 +167,6 @@
           <span class="instruction" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
           <div class="controls">
-          <div class="next-prev">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="fas fa-backward"></i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="fas fa-forward"></i></button>
-          </div>
         </div>
 
       </div> <!--graphic container-->
