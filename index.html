@@ -1,3 +1,5 @@
+<!doctype html>
+<html>
 <head>
   <title>Dancr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,22 +28,52 @@
 
 <body>
 
-  <!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
-  <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" id="app" v-on:change="alert('hello')">
-    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="app">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Standard</span>
+      </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#scroll-tab-1" class="mdl-layout__tab is-active" v-on:click="change_dance('Slow Waltz')">Waltz</a>
+        <a href="#scroll-tab-2" class="mdl-layout__tab" v-on:click="change_dance('Tango')">Tango</a>
+        <a href="#scroll-tab-3" class="mdl-layout__tab" v-on:click="change_dance('Viennese Waltz')">Viennese</a>
+        <a href="#scroll-tab-4" class="mdl-layout__tab" v-on:click="change_dance('Slow Foxtrot')">Foxtrot</a>
+        <a href="#scroll-tab-5" class="mdl-layout__tab" v-on:click="change_dance('Quickstep')">Quickstep</a>
+      </div>
+    </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+          <img src="img/dance-avatar.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>Jessica Wang</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">more_vert</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">Edit Profile</li>
+              <li class="mdl-menu__item">Logout</li>
+            </ul>
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" href="">Standard</a>
+          <a class="mdl-navigation__link" href="">Latin (coming soon)</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervised_user_circle</i>Find a Partner</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+      </div>
+
+
+  <!-- <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" id="app">
+    <header class="demo-header mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">{{dance}}</span>
         <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-            <i class="material-icons">search</i>
-          </label>
-          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" id="search">
-            <label class="mdl-textfield__label" for="search">Enter your query...</label>
-          </div>
-        </div>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -72,7 +104,7 @@
         <div class="mdl-layout-spacer"></div>
         <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
       </nav>
-    </div>
+    </div> -->
     <main class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid demo-content"><!--content-->
 
@@ -106,58 +138,59 @@
             </svg>
           </div>
           <div class="M" id="ML" v-show="lead_active">
-            <svg viewBox="0 0 70 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="ML-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="ML-T" fill="#069FE6" fill-rule="nonzero">
-                  <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
-                </g>
-                <g id="ML-H" transform="translate(11.000000, 128.000000)" fill="#069FE6" fill-rule="nonzero">
-                  <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
-                </g>
+                  <g id="ML-T" fill="#069FE6" fill-rule="nonzero">
+                      <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
+                  </g>
+                  <g id="ML-H" transform="translate(11.000000, 127.000000)" fill="#069FE6" fill-rule="nonzero">
+                      <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
+                  </g>
               </g>
             </svg>
           </div>
           <div class="M" id="MR" v-show="lead_active">
-            <svg viewBox="0 0 71 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="MR-export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="MR-H" transform="translate(33.000000, 157.000000) scale(-1, 1) translate(-33.000000, -157.000000) translate(6.000000, 128.000000)" fill="#069FE6" fill-rule="nonzero">
-                  <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
-                </g>
-                <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
-                  <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
-                </g>
+            <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="MR-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="MR-H" transform="translate(32.000000, 156.000000) scale(-1, 1) translate(-32.000000, -156.000000) translate(5.000000, 127.000000)" fill="#069FE6" fill-rule="nonzero">
+                      <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
+                  </g>
+                  <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
+                      <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
+                  </g>
               </g>
             </svg>
           </div>
           <div class="L" id="LL" v-show="follow_active">
-            <svg viewBox="0 0 57 176" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="LL-export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="LL-T" transform="translate(-0.000000, 7.000000)" fill="#FF51A6">
-                  <path d="M30.1148379,93 C46.7468036,93 54.9152926,81.325092 54.9152926,65.5361364 C54.9152926,60.732685 57.5031877,0 34.0708507,0 C10.6385138,0 4.54747351e-13,61.3676253 4.54747351e-13,64.4115669 C4.54747351e-13,80.2005225 13.4828722,93 30.1148379,93 Z" id="Oval"></path>
-                </g>
-                <g id="LL-H" transform="translate(11.629542, 135.000000)" fill="#FF51A6">
-                  <path d="M0,0 L32,0 L32,16.3636364 C32,32.1212121 26.6666667,40 16,40 C5.33333333,40 0,32.1212121 0,16.3636364 L0,0 Z" id="Rectangle"></path>
-                </g>
+            <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="LL-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="LL-T" transform="translate(5.000000, 0.000000)" fill="#FF51A6">
+                      <path d="M32.8036627,103 C50.9206254,103 59.8184438,90.0697256 59.8184438,72.5830328 C59.8184438,67.2630812 62.6374008,0 37.1128909,0 C11.5883811,0 4.54747351e-13,67.9662947 4.54747351e-13,71.3375418 C4.54747351e-13,88.8242346 14.6867001,103 32.8036627,103 Z" id="Oval"></path>
+                  </g>
+                  <g id="LL-H" transform="translate(17.000000, 131.000000)" fill="#FF51A6">
+                      <path d="M0,0 L34,0 L34,18 C34,35.3333333 28.3333333,44 17,44 C5.66666667,44 0,35.3333333 0,18 L0,0 Z" id="Rectangle"></path>
+                  </g>
               </g>
             </svg>
           </div>
 
           <div class="L" id="LR" v-show="follow_active">
-            <svg viewBox="0 0 57 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="LR-export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="LR-T" transform="translate(28.000000, 53.500000) scale(-1, 1) translate(-28.000000, -53.500000) translate(0.000000, 7.000000)" fill="#FF51A6">
-                  <path d="M30.1148379,93 C46.7468036,93 54.9152926,81.325092 54.9152926,65.5361364 C54.9152926,60.732685 57.5031877,0 34.0708507,0 C10.6385138,0 4.54747351e-13,61.3676253 4.54747351e-13,64.4115669 C4.54747351e-13,80.2005225 13.4828722,93 30.1148379,93 Z" id="Oval"></path>
-                </g>
-                <g id="LR-H" transform="translate(11.629542, 135.000000)" fill="#FF51A6">
-                  <path d="M0,0 L32,0 L32,16.3636364 C32,32.1212121 26.6666667,40 16,40 C5.33333333,40 0,32.1212121 0,16.3636364 L0,0 Z" id="Rectangle"></path>
-                </g>
+            <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="LR-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="LR-T" transform="translate(34.500000, 51.500000) scale(-1, 1) translate(-34.500000, -51.500000) translate(3.000000, 0.000000)" fill="#FF51A6">
+                      <path d="M33.8791926,103 C52.5901541,103 61.7797042,90.0697256 61.7797042,72.5830328 C61.7797042,67.2630812 64.6910861,0 38.329707,0 C11.968328,0 4.54747351e-13,67.9662947 4.54747351e-13,71.3375418 C4.54747351e-13,88.8242346 15.1682312,103 33.8791926,103 Z" id="Oval"></path>
+                  </g>
+                  <g id="LR-H" transform="translate(17.000000, 131.000000)" fill="#FF51A6">
+                      <path d="M0,0 L34,0 L34,18 C34,35.3333333 28.3333333,44 17,44 C5.66666667,44 0,35.3333333 0,18 L0,0 Z" id="Rectangle"></path>
+                  </g>
               </g>
             </svg>
           </div>
           <div class="next-prev">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="fas fa-backward"></i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="fas fa-forward"></i></button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
           </div>
         </div>
 
@@ -238,3 +271,4 @@
 
 
 </body>
+</html>

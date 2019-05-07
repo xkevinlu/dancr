@@ -30,7 +30,9 @@ var app = new Vue({
     step:0,
     step_total:999,
     style: "Standard",
-    dance: "Waltz"
+    dance: "Waltz",
+    foot_width: 20,
+    playing:false,
   },
   methods: {
     change_dance: function(dance) {
@@ -90,6 +92,13 @@ var app = new Vue({
       this.lr = new_figure.data[0].lr;
       this.update_feet_position();
     },
+    play: async function () {
+      playing = true;
+      while (this.step < this.step_total-1 && playing == true) {
+        this.next();
+        await counterDelay(2000);
+      }
+    },
     next: function () {
       if (app.step < app.step_total-1) {
         app.step += 1;
@@ -107,6 +116,7 @@ var app = new Vue({
     },
     prev: function () {
       if (app.step > 0) {
+        playing = false;
         app.step -= 1;
 
         app.instruction_both = this.current_figure.data[app.step].text[0];
@@ -121,6 +131,7 @@ var app = new Vue({
       }
     },
     replay: function () {
+      playing = false;
       app.step = 0;
 
       app.instruction_both = this.current_figure.data[app.step].text[0];
@@ -146,28 +157,38 @@ var app = new Vue({
       app.follow_active = true;
     },
     update_feet_position: function() {
-      ml_visual.style.left = app.ml[0];
-      ml_visual.style.top = app.ml[1];
+      ml_visual.style.left = app.ml[0] + "px";
+      ml_visual.style.top = app.ml[1] + "px";
       ml_visual.style.transform = "rotate("+app.ml[2]+"deg)";
       ml_visual.style.opacity =app.ml[3];
 
-      mr_visual.style.left = app.mr[0];
-      mr_visual.style.top = app.mr[1];
+      mr_visual.style.left = app.mr[0] + "px";
+      mr_visual.style.top = app.mr[1] + "px";
       mr_visual.style.transform = "rotate("+app.mr[2]+"deg)";
       mr_visual.style.opacity =app.mr[3];
 
-      ll_visual.style.left = app.ll[0];
-      ll_visual.style.top = app.ll[1];
+      ll_visual.style.left = app.ll[0] + "px";
+      ll_visual.style.top = app.ll[1] + "px";
       ll_visual.style.transform = "rotate("+app.ll[2]+"deg)";
       ll_visual.style.opacity =app.ll[3];
 
-      lr_visual.style.left = app.lr[0];
-      lr_visual.style.top = app.lr[1];
+      lr_visual.style.left = app.lr[0] + "px";
+      lr_visual.style.top = app.lr[1] + "px";
       lr_visual.style.transform = "rotate("+app.lr[2]+"deg)";
       lr_visual.style.opacity =app.lr[3];
+    },
+    set_foot_width: function(px) {
+      ml_visual.style.width = px + "px";
+      mr_visual.style.width = px + "px";
+      ll_visual.style.width = px + "px";
+      lr_visual.style.width = px + "px";
     }
   }
 })
+
+function counterDelay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const ml_visual = document.getElementById("ML");
 const mr_visual = document.getElementById("MR");

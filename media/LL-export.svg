@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="185px" viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>LL</title>
+    <desc>Created with Sketch.</desc>
+    <g id="LL" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LT" transform="translate(5.000000, 0.000000)" fill="#FF51A6">
+            <path d="M32.8036627,103 C50.9206254,103 59.8184438,90.0697256 59.8184438,72.5830328 C59.8184438,67.2630812 62.6374008,0 37.1128909,0 C11.5883811,0 4.54747351e-13,67.9662947 4.54747351e-13,71.3375418 C4.54747351e-13,88.8242346 14.6867001,103 32.8036627,103 Z" id="Oval"></path>
+        </g>
+        <g id="LH" transform="translate(17.000000, 131.000000)" fill="#FF51A6">
+            <path d="M0,0 L34,0 L34,18 C34,35.3333333 28.3333333,44 17,44 C5.66666667,44 0,35.3333333 0,18 L0,0 Z" id="Rectangle"></path>
+        </g>
+    </g>
+</svg>

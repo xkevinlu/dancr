@@ -8,6 +8,24 @@ class Figure {
     }
 }
 
+var foot_width = 20;
+var large_step = 100;
+var small_step = 80;
+
+const rf_closed_change_data = [
+  {
+    text:[
+      "Prepare to move towards DC",
+      "Begin with weight on left foot",
+      "Begin with weight on right foot"
+    ],
+    ml: [54,209,45,0.3],
+    mr: [84,234,45,1],
+    ll: [154,190,225,1],
+    lr: [120,165,225,0.3]
+  }
+]
+
 const natural_turn_data = [
   {
     text:[
@@ -15,10 +33,10 @@ const natural_turn_data = [
       "Begin with weight on left foot",
       "Begin with weight on right foot"
     ],
-    ml: [80,10,135,1],
-    mr: [40,40,135,0.3],
-    ll: [70,110,-45,0.3],
-    lr: [110,80,-45,1]
+    ml: [75,10,135,1],
+    mr: [45,40,135,0.3],
+    ll: [70,90,-45,0.3],
+    lr: [100,60,-45,1]
   },
   {
     text:[
@@ -26,10 +44,10 @@ const natural_turn_data = [
       "1. RF fwd (HT), commence to rise end of 1",
       "1. LF back (TH), commence to rise end of 1 ,NFR"
     ],
-    ml: [80,10,135,0.3],
-    mr: [100,150,135,1],
-    ll: [100,210,-45,1],
-    lr: [110,80,-45,0.3]
+    ml: [75,10,135,0.3],
+    mr: [95,90,135,1],
+    ll: [100,135,-45,1],
+    lr: [100,60,-45,0.3]
   },
   {
     text:[
@@ -37,32 +55,21 @@ const natural_turn_data = [
       "2. LF to side (T), cont. to rise",
       "2. RF to side (T), cont. to rise"
     ],
-    ml: [240,260,225,1],
-    mr: [140,160,225,0.3],
-    ll: [100,210,-45,0.3],
-    lr: [170,260,90,1]
+    ml: [230,180,225,1],
+    mr: [110,90,225,0.3],
+    ll: [100,135,-45,0.3],
+    lr: [170,180,90,1]
   },
   {
     text:[
-      "3. Collecting weight under body",
+      "3. Collecting weight under body, change weight end of 3",
       "3. RF closes to LF (T), cont. to rise",
       "3. LF closes to RF (T), cont. to rise"
     ],
-    ml: [250,280,270,1],
-    mr: [250,240,270,0.3],
-    ll: [170,220,90,0.3],
-    lr: [170,260,90,1]
-  },
-  {
-  text:[
-    "3&. Collecting weight under body",
-    "3&. Collect RF and lower end of 3",
-    "3&. Collect LF and lower end of 3"
-  ],
-  ml: [250,280,270,0.3],
-  mr: [250,240,270,1],
-  ll: [170,220,90,1],
-  lr: [170,260,90,0.3]
+    ml: [230,195,270,0.3],
+    mr: [230,165,270,1],
+    ll: [170,150,90,1],
+    lr: [170,180,90,0.3]
   }
 ];
 
@@ -196,12 +203,13 @@ const chasse_to_right_data = [
 const natural_turn = new Figure("Natural Turn", "Waltz", "Newcomer", "Standard", natural_turn_data);
 const natural_spin_turn = new Figure("Natural Spin Turn", "Waltz", "Newcomer", "Standard", spin_turn_data);
 const reverse_turn = new Figure("Reverse Turn", "Waltz", "Newcomer", "Standard", natural_turn_data);
-const change_step = new Figure("Change Step", "Waltz", "Newcomer", "Standard", natural_turn_data);
+const rf_closed_change = new Figure("RF Closed Change", "Waltz", "Newcomer", "Standard", natural_turn_data);
+const lf_closed_change = new Figure("LF Closed Change", "Waltz", "Newcomer", "Standard", natural_turn_data);
 const whisk = new Figure("Whisk", "Waltz", "Newcomer", "Standard", natural_turn_data);
 const chasse_from_promenade = new Figure("Chasse from Promenade", "Waltz", "Newcomer", "Standard", natural_turn_data);
 const prep_step = new Figure("Prep Step", "Waltz", "Newcomer", "Standard", natural_turn_data);
 
-const waltz_newcomer_figures = [natural_turn, natural_spin_turn, reverse_turn, change_step, whisk, chasse_from_promenade, prep_step];
+const waltz_newcomer_figures = [natural_turn, natural_spin_turn, reverse_turn, rf_closed_change, lf_closed_change, whisk, chasse_from_promenade, prep_step];
 
 const closed_impetus = new Figure("Closed Impetus", "Waltz", "Bronze", "Standard", chasse_to_right_data);
 const hesitation_change = new Figure("Hesitation Change", "Waltz", "Bronze", "Standard", chasse_to_right_data);
