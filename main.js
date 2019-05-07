@@ -12,7 +12,7 @@ Vue.component('figure-item', {
 var app = new Vue({
   el: "#app",
   data: {
-    current_figure: natural_turn,
+    current_figure: waltz_all_figures[0],
     text: null,
     instruction_both: "both_text",
     instruction_lead: "lead text",
@@ -21,10 +21,12 @@ var app = new Vue({
     mr: [84,234,45,1],
     ll: [54,209,45,1],
     lr: [120,165,225,0.3],
-    newcomer_figures: waltz_newcomer_figures,
-    bronze_figures: waltz_bronze_figures,
-    silver_figures: waltz_silver_figures,
-    gold_figures: waltz_gold_figures,
+    preceding_figures: waltz_all_figures[0].preceding_figures,
+    following_figures: waltz_all_figures[0].following_figures,
+    newcomer_figures: "Newcomer_figures",
+    bronze_figures: "Bronze_figures",
+    silver_figures: "Silver_figures",
+    gold_figures: "Gold_figures",
     lead_active: true,
     follow_active: true,
     step:0,
@@ -84,6 +86,8 @@ var app = new Vue({
       this.instruction_both = new_figure.data[0].text[0];
       this.instruction_lead = new_figure.data[0].text[1];
       this.instruction_follow = new_figure.data[0].text[2];
+      this.preceding_figures = new_figure.preceding_figures;
+      this.following_figures = new_figure.following_figures;
       this.step = 0;
       this.step_total = new_figure.data.length;
       this.ml = new_figure.data[0].ml;
@@ -107,26 +111,26 @@ var app = new Vue({
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml;
-        app.mr = this.current_figure.data[app.step].mr;
-        app.ll = this.current_figure.data[app.step].ll;
-        app.lr = this.current_figure.data[app.step].lr;
+        app.ml = this.current_figure.data[app.step].ml.map(function (num, idx) {return num+app.ml[idx]});
+        app.mr = this.current_figure.data[app.step].mr.map(function (num, idx) {return num+app.mr[idx]});
+        app.ll = this.current_figure.data[app.step].ll.map(function (num, idx) {return num+app.ll[idx]});
+        app.lr = this.current_figure.data[app.step].lr.map(function (num, idx) {return num+app.lr[idx]});
         this.update_feet_position();
       }
     },
     prev: function () {
       if (app.step > 0) {
         playing = false;
-        app.step -= 1;
 
         app.instruction_both = this.current_figure.data[app.step].text[0];
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml;
-        app.mr = this.current_figure.data[app.step].mr;
-        app.ll = this.current_figure.data[app.step].ll;
-        app.lr = this.current_figure.data[app.step].lr;
+        app.ml = this.current_figure.data[app.step].ml.map(function (num, idx) {return app.ml[idx] - num});
+        app.mr = this.current_figure.data[app.step].mr.map(function (num, idx) {return app.mr[idx] - num});
+        app.ll = this.current_figure.data[app.step].ll.map(function (num, idx) {return app.ll[idx] - num});
+        app.lr = this.current_figure.data[app.step].lr.map(function (num, idx) {return app.lr[idx] - num});
+        app.step -= 1;
         this.update_feet_position();
       }
     },
@@ -195,4 +199,4 @@ const mr_visual = document.getElementById("MR");
 const ll_visual = document.getElementById("LL");
 const lr_visual = document.getElementById("LR");
 
-app.change_figure(natural_turn);
+app.change_dance("Slow Waltz");
