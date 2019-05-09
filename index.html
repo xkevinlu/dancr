@@ -4,7 +4,7 @@
   <title>Dancr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Dancr - Ballroom dancing visualized">
-  <meta property="og:description" content="Learn ballroom dance steps visually."">
+  <meta property="og:description" content="Learn ballroom dance steps visually.">
   <meta property="og:image" content="img/logo.png">
   <meta property="og:url" content="https://xkevinlu.github.io/dancr/">
 
@@ -165,8 +165,8 @@
       </div> <!--graphic container-->
 
 <div id="pf-figures">
-      <div class="w-100">
-      <h5 class="list-head">Comes After:</h5>
+      <div >
+      <h5 class="list-head">Steps Before:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in preceding_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">
@@ -175,8 +175,8 @@
         </li>
       </ul>
       </div>
-      <div class="w-100">
-      <h5 class="list-head">Comes Next:</h5>
+      <div >
+      <h5 class="list-head">Steps After:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in following_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">

@@ -200,3 +200,4 @@ const ll_visual = document.getElementById("LL");
 const lr_visual = document.getElementById("LR");
 
 app.change_dance("Slow Waltz");
+app.change_figure(waltz_all_figures[6]);
