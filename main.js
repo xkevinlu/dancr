@@ -38,12 +38,6 @@ var app = new Vue({
   },
   methods: {
     change_dance: function(dance) {
-      document.querySelector('.mdl-layout__drawer').classList.remove('is-visible');
-      try {
-        document.querySelector('.mdl-layout__obfuscator').classList.remove('is-visible');
-      } catch {
-        console.log("MDL Layout obfuscator not loaded yet");
-      }
       this.dance = dance;
       switch(dance) {
         case "Slow Waltz":
@@ -206,4 +200,4 @@ const ll_visual = document.getElementById("LL");
 const lr_visual = document.getElementById("LR");
 
 app.change_dance("Slow Waltz");
-// app.change_figure(waltz_all_figures[6]);
+app.change_figure(waltz_all_figures[6]);
