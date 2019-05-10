@@ -99,10 +99,10 @@ const spin_turn_data = [
       "Begin with weight on right foot",
       "Begin with weight on left foot"
     ],
-    ml: [120,150,270,0.3],
-    mr: [120,120,270,1],
-    ll: [60,105,90,1],
-    lr: [60,135,90,0.3]
+    ml: [100,170,270,0.3,"top", "all 2s"],
+    mr: [120,120,270,1,"center","all 2s"],
+    ll: [80,125,90,1,"top","all 2s"],
+    lr: [80,155,90,0.3, "top", "all 2s"]
   },
   {
     text:[
@@ -110,10 +110,10 @@ const spin_turn_data = [
       "1. LF back & slightly to side with Pivot (THT), toe turned in",
       "1. RF forward with Pivot (HT)"
     ],
-    ml: [sm_step,sm_step, 22.5,f_on],
+    ml: [sm_step,xs_step, 22.5,f_on,"top"],
     mr: [0,0,0,f_off],
-    ll: [0,0,0,f_off],
-    lr: [lg_step,xs_step,0,f_on]
+    ll: [0,0,0,f_off,"top", "all 2s"],
+    lr: [lg_step,xs_step,0,f_on,"top"]
   },
   {
     text:[
@@ -121,10 +121,10 @@ const spin_turn_data = [
       "2. RF fwd in CBMP (HT), rise end of 2",
       "2. LF back & slightly to side (T), then brush RF to LF"
     ],
-    ml: [-xs_step,-xs_step,157.5,f_off],
+    ml: [0,0,157.5,f_off,"top"],
     mr: [xl_step,md_step,180,f_on],
-    ll: [2*xl_step+20,xl_step,180,f_on],
-    lr: [sm_step+10,0,180,f_off]
+    ll: [2*lg_step+20,xl_step,180,f_on, "top", "left 2s, top 1.8s ease-in, opacity 2s, transform 2s"],
+    lr: [0,0,180,f_off,"top"]
   },
   {
     text:[
@@ -132,10 +132,10 @@ const spin_turn_data = [
       "3. LF to side & slightly back (TH)",
       "3. RF diag fwd (TH)"
     ],
-    ml: [sm_step,-lg_step,45,f_on],
+    ml: [md_step,-xl_step-10,45,f_on],
     mr: [0,0,45,f_off],
-    ll: [-xs_step,xs_step,45,f_off],
-    lr: [xs_step, -xs_step,45,f_on]
+    ll: [0,0,45,f_off,"top"],
+    lr: [md_step, -sm_step-10,45,f_on]
   },
   {
   text:[
@@ -144,8 +144,8 @@ const spin_turn_data = [
     "3&. Collect LF and lower end of 3"
   ],
   ml: [0,0,0,0],
-  mr: [-md_step-5,-md_step-10,0,0],
-  ll: [-md_step-15,-md_step-10,0,0],
+  mr: [-sm_step,-lg_step,0,0],
+  ll: [-md_step-5,-lg_step,0,0],
   lr: [0,0,0,0]
   }
 ];
@@ -297,8 +297,8 @@ const whisk_data = [
       "1&. LF closes to RF without weight"
     ],
     ml: [0,0,0,0],
-    mr: [md_step,md_step,0,0],
-    ll: [md_step,md_step,0,0],
+    mr: [md_step+10,md_step-10,0,0],
+    ll: [md_step+10,md_step-10,0,0],
     lr: [0,0,0,0],
   },
   {
@@ -308,8 +308,8 @@ const whisk_data = [
       "2. LF crosses behind RF in PP (T), cont. to rise"
     ],
     ml: [0,0,0,f_off],
-    mr: [-xs_step,xs_step,0,f_on],
-    ll: [-md_step,xs_step,90,f_on],
+    mr: [-sm_step,xs_step,0,f_on],
+    ll: [-lg_step,xs_step,90,f_on],
     lr: [-10,10,90,f_off],
   },
   {
@@ -321,7 +321,7 @@ const whisk_data = [
     ml: [-xl_step,sm_step,0,f_on],
     mr: [0,0,0,f_off],
     ll: [0,0,0,f_off],
-    lr: [-xl_step-30,md_step,0,f_on]
+    lr: [-xl_step-30,sm_step,0,f_on]
   }
 ];
 

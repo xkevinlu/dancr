@@ -27,21 +27,10 @@ const left_foot_walk_data = [
       "2. LF to side (T), cont. to rise",
       "2. RF to side (T), cont. to rise"
     ],
-    ml: [155,170,90,f_on],
-    mr: [25,0,90,f_off],
-    ll: [0,0,0,f_off],
-    lr: [70,120,135,f_on],
-  },
-  {
-    text:[
-      "3. Collecting weight under body, change weight end of 3",
-      "3. RF closes to LF (T), cont. to rise",
-      "3. LF closes to RF (T), cont. to rise"
-    ],
-    ml: [0,15,45,f_off],
-    mr: [110,75,45,f_on],
-    ll: [70,15,135,f_on],
-    lr: [0,0,0,f_off]
+    ml: [0,0,0,0],
+    mr: [md_step+5,lg_step+5,-22.5,0],
+    ll: [lg_step,lg_step,-22.5,0],
+    lr: [0,0,0,0],
   }
 ];
 

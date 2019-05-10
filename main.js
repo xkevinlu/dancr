@@ -17,10 +17,10 @@ var app = new Vue({
     instruction_both: "both_text",
     instruction_lead: "lead text",
     instruction_follow: "follow text",
-    ml: [54,209,45,0.3],
-    mr: [84,234,45,1],
-    ll: [54,209,45,1],
-    lr: [120,165,225,0.3],
+    ml: [0,0,0,0.3],
+    mr: [0,0,0,1],
+    ll: [0,0,0,1],
+    lr: [0,0,0,0.3],
     preceding_figures: waltz_all_figures[0].preceding_figures,
     following_figures: waltz_all_figures[0].following_figures,
     newcomer_figures: "Newcomer_figures",
@@ -38,7 +38,9 @@ var app = new Vue({
   },
   methods: {
     change_dance: function(dance) {
+      try{
       document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
+    }catch{}
       this.dance = dance;
       switch(dance) {
         case "Slow Waltz":
@@ -84,18 +86,10 @@ var app = new Vue({
     },
     change_figure: function (new_figure) {
       this.current_figure = new_figure;
-      this.instruction_both = new_figure.data[0].text[0];
-      this.instruction_lead = new_figure.data[0].text[1];
-      this.instruction_follow = new_figure.data[0].text[2];
+      this.step_total = new_figure.data.length;
       this.preceding_figures = new_figure.preceding_figures;
       this.following_figures = new_figure.following_figures;
-      this.step = 0;
-      this.step_total = new_figure.data.length;
-      this.ml = new_figure.data[0].ml;
-      this.mr = new_figure.data[0].mr;
-      this.ll = new_figure.data[0].ll;
-      this.lr = new_figure.data[0].lr;
-      this.update_feet_position();
+      this.replay();
     },
     play: async function () {
       playing = true;
@@ -112,10 +106,38 @@ var app = new Vue({
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml.map(function (num, idx) {return num+app.ml[idx]});
-        app.mr = this.current_figure.data[app.step].mr.map(function (num, idx) {return num+app.mr[idx]});
-        app.ll = this.current_figure.data[app.step].ll.map(function (num, idx) {return num+app.ll[idx]});
-        app.lr = this.current_figure.data[app.step].lr.map(function (num, idx) {return num+app.lr[idx]});
+        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) {
+          if (idx < 4) {
+            return value+app.ml[idx];
+          } else {
+            return value;
+          }
+        });
+
+        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) {
+          if (idx < 4) {
+            return value+app.mr[idx];
+          } else {
+            return value;
+          }
+        });
+
+        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) {
+          if (idx < 4) {
+            return value+app.ll[idx];
+          } else {
+            return value;
+          }
+       });
+        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
+          if (idx < 4) {
+            return value+app.lr[idx];
+          } else {
+            return value;
+          }
+        });
+
+
         this.update_feet_position();
       }
     },
@@ -127,10 +149,10 @@ var app = new Vue({
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml.map(function (num, idx) {return app.ml[idx] - num});
-        app.mr = this.current_figure.data[app.step].mr.map(function (num, idx) {return app.mr[idx] - num});
-        app.ll = this.current_figure.data[app.step].ll.map(function (num, idx) {return app.ll[idx] - num});
-        app.lr = this.current_figure.data[app.step].lr.map(function (num, idx) {return app.lr[idx] - num});
+        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) { if(idx < 4) return app.ml[idx] - value});
+        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) { if(idx < 4) return app.mr[idx] - value});
+        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) { if(idx < 4) return app.ll[idx] - value});
+        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) { if(idx < 4) return app.lr[idx] - value});
         app.step -= 1;
         this.update_feet_position();
       }
@@ -164,6 +186,16 @@ var app = new Vue({
     moveFoot: function(feet, data) {
       if (data[4] != undefined ) {
         feet.style.transformOrigin = data[4];
+      } else {
+        feet.style.transformOrigin = "center";
+      }
+      console.log(data);
+      if (data[5] != undefined ) {
+        feet.style.transition = data[5];
+        console.log(data[5])
+      } else {
+        feet.style.transition = "all 2s";
+        console.log("all 2s");
       }
       feet.style.left = `${data[0]}px`;
       feet.style.top = `${data[1]}px`;
