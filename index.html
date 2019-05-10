@@ -28,19 +28,16 @@
 
 <body>
 
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="app">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" id="app">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">Standard Figures </span>
+        <span class="mdl-layout-title">{{ dance }} </span>
       </div>
       <!-- Tabs -->
       <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a href="#scroll-tab-1" class="mdl-layout__tab is-active" v-on:click="change_dance('Slow Waltz')">Waltz</a>
-        <a href="#scroll-tab-2" class="mdl-layout__tab" v-on:click="change_dance('Tango')">Tango</a>
-        <a href="#scroll-tab-3" class="mdl-layout__tab" v-on:click="change_dance('Viennese Waltz')">Viennese</a>
-        <a href="#scroll-tab-4" class="mdl-layout__tab" v-on:click="change_dance('Slow Foxtrot')">Foxtrot</a>
-        <a href="#scroll-tab-5" class="mdl-layout__tab" v-on:click="change_dance('Quickstep')">Quickstep</a>
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Figures</a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab">Technique</a>
       </div>
     </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -60,8 +57,11 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href="">Standard Figures</a>
-          <a class="mdl-navigation__link" href="">Standard Technique</a>
+          <a class="mdl-navigation__link" v-on:click="change_dance('Slow Waltz')">Slow Waltz</a>
+          <a class="mdl-navigation__link" v-on:click="change_dance('Tango')">Tango</a>
+          <a class="mdl-navigation__link" v-on:click="change_dance('Viennese Waltz')">Viennese</a>
+          <a class="mdl-navigation__link" v-on:click="change_dance('Slow Foxtrot')">Foxtrot</a>
+          <a class="mdl-navigation__link" v-on:click="change_dance('Quickstep')">Quickstep</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervised_user_circle</i>Find a Partner</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>

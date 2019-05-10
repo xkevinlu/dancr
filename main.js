@@ -38,6 +38,7 @@ var app = new Vue({
   },
   methods: {
     change_dance: function(dance) {
+      document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
       this.dance = dance;
       switch(dance) {
         case "Slow Waltz":
@@ -138,9 +139,9 @@ var app = new Vue({
       playing = false;
       app.step = 0;
 
-      app.instruction_both = this.current_figure.data[app.step].text[0];
-      app.instruction_lead = this.current_figure.data[app.step].text[1];
-      app.instruction_follow = this.current_figure.data[app.step].text[2];
+      app.instruction_both = this.current_figure.data[0].text[0];
+      app.instruction_lead = this.current_figure.data[0].text[1];
+      app.instruction_follow = this.current_figure.data[0].text[2];
 
       app.ml = this.current_figure.data[0].ml;
       app.mr = this.current_figure.data[0].mr;
@@ -160,26 +161,20 @@ var app = new Vue({
       app.lead_active = true;
       app.follow_active = true;
     },
+    moveFoot: function(feet, data) {
+      if (data[4] != undefined ) {
+        feet.style.transformOrigin = data[4];
+      }
+      feet.style.left = `${data[0]}px`;
+      feet.style.top = `${data[1]}px`;
+      feet.style.transform = `rotate(${data[2]}deg)`;
+      feet.style.opacity = `${data[3]}`;
+    },
     update_feet_position: function() {
-      ml_visual.style.left = app.ml[0] + "px";
-      ml_visual.style.top = app.ml[1] + "px";
-      ml_visual.style.transform = "rotate("+app.ml[2]+"deg)";
-      ml_visual.style.opacity =app.ml[3];
-
-      mr_visual.style.left = app.mr[0] + "px";
-      mr_visual.style.top = app.mr[1] + "px";
-      mr_visual.style.transform = "rotate("+app.mr[2]+"deg)";
-      mr_visual.style.opacity =app.mr[3];
-
-      ll_visual.style.left = app.ll[0] + "px";
-      ll_visual.style.top = app.ll[1] + "px";
-      ll_visual.style.transform = "rotate("+app.ll[2]+"deg)";
-      ll_visual.style.opacity =app.ll[3];
-
-      lr_visual.style.left = app.lr[0] + "px";
-      lr_visual.style.top = app.lr[1] + "px";
-      lr_visual.style.transform = "rotate("+app.lr[2]+"deg)";
-      lr_visual.style.opacity =app.lr[3];
+      app.moveFoot(ml_visual,app.ml);
+      app.moveFoot(mr_visual,app.mr);
+      app.moveFoot(ll_visual,app.ll);
+      app.moveFoot(lr_visual,app.lr);
     },
     set_foot_width: function(px) {
       ml_visual.style.width = px + "px";

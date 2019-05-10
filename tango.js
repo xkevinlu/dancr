@@ -1,5 +1,53 @@
+const left_foot_walk_data = [
+  {
+    text:[
+      "Prepare to move towards DW",
+      "Begin with weight on right foot",
+      "Begin with weight on left foot"
+    ],
+    ml: [75,50,150,0.3],
+    mr: [45,40,135,1],
+    ll: [50,90,-30,1],
+    lr: [80,90,-45,0.3]
+  },
+  {
+    text:[
+      "1. Moving together towards DW",
+      "1. LF fwd (HT) in CBMP, no rise",
+      "1. RF back (TH) in CBMP, no rise"
+    ],
+    ml: [md_step,md_step,-22.5,0.7],
+    mr: [0,0,0,-0.7],
+    ll: [0,0,0,-0.7],
+    lr: [lg_step,md_step,-22.5,0.7]
+  },
+  {
+    text:[
+      "2. Moving together towards LOD",
+      "2. LF to side (T), cont. to rise",
+      "2. RF to side (T), cont. to rise"
+    ],
+    ml: [155,170,90,f_on],
+    mr: [25,0,90,f_off],
+    ll: [0,0,0,f_off],
+    lr: [70,120,135,f_on],
+  },
+  {
+    text:[
+      "3. Collecting weight under body, change weight end of 3",
+      "3. RF closes to LF (T), cont. to rise",
+      "3. LF closes to RF (T), cont. to rise"
+    ],
+    ml: [0,15,45,f_off],
+    mr: [110,75,45,f_on],
+    ll: [70,15,135,f_on],
+    lr: [0,0,0,f_off]
+  }
+];
+
+
 const tango_all_figures = [
-    new Figure("Left Foot Walk", "Tango", "Newcomer", "Standard", natural_turn_data),
+    new Figure("Left Foot Walk", "Tango", "Newcomer", "Standard", left_foot_walk_data),
     new Figure("Right Foot Walk", "Tango", "Newcomer", "Standard", natural_turn_data),
     new Figure("Progressive Side Step", "Tango", "Newcomer", "Standard", natural_turn_data),
     new Figure("Point to PP", "Tango", "Newcomer", "Standard", natural_turn_data),
