@@ -16,3 +16,16 @@ var sm_step = 40;
 var xs_step = 20;
 var f_on = 0.7;
 var f_off = -0.7;
+
+
+var c = 0;
+var dc = 45;
+var lod = 90;
+var dw = 135;
+var w = 180;
+var bdc = 225;
+var blod = 270;
+var bdw = 315;
+
+var on = 0.7;
+var off = -0.7;

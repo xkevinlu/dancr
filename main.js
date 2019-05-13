@@ -39,48 +39,50 @@ var app = new Vue({
   methods: {
     change_dance: function(dance) {
       try{
-      document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
-    }catch{}
+        document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
+      } catch (err){
+        console.log(err);
+      }
       this.dance = dance;
       switch(dance) {
         case "Slow Waltz":
-          this.change_figure(waltz_all_figures[0]);
-          this.newcomer_figures = waltz_all_figures.filter(figure => figure.level == "Newcomer");
-          this.bronze_figures = waltz_all_figures.filter(figure => figure.level == "Bronze");
-          this.silver_figures = waltz_all_figures.filter(figure => figure.level == "Silver");
-          this.gold_figures = waltz_all_figures.filter(figure => figure.level == "Gold");
+        this.change_figure(waltz_all_figures[0]);
+        this.newcomer_figures = waltz_all_figures.filter(figure => figure.level == "Newcomer");
+        this.bronze_figures = waltz_all_figures.filter(figure => figure.level == "Bronze");
+        this.silver_figures = waltz_all_figures.filter(figure => figure.level == "Silver");
+        this.gold_figures = waltz_all_figures.filter(figure => figure.level == "Gold");
         break;
 
         case "Tango":
-          this.change_figure(tango_all_figures[0]);
-          this.newcomer_figures = tango_all_figures.filter(figure => figure.level == "Newcomer");
-          this.bronze_figures = tango_all_figures.filter(figure => figure.level == "Bronze");
-          this.silver_figures = tango_all_figures.filter(figure => figure.level == "Silver");
-          this.gold_figures = tango_all_figures.filter(figure => figure.level == "Gold");
+        this.change_figure(tango_all_figures[0]);
+        this.newcomer_figures = tango_all_figures.filter(figure => figure.level == "Newcomer");
+        this.bronze_figures = tango_all_figures.filter(figure => figure.level == "Bronze");
+        this.silver_figures = tango_all_figures.filter(figure => figure.level == "Silver");
+        this.gold_figures = tango_all_figures.filter(figure => figure.level == "Gold");
         break;
 
         case "Viennese Waltz":
-          this.change_figure(vwaltz_all_figures[0]);
-          this.newcomer_figures = vwaltz_all_figures.filter(figure => figure.level == "Newcomer");
-          this.bronze_figures = vwaltz_all_figures.filter(figure => figure.level == "Bronze");
-          this.silver_figures = vwaltz_all_figures.filter(figure => figure.level == "Silver");
-          this.gold_figures = vwaltz_all_figures.filter(figure => figure.level == "Gold");
+        this.change_figure(vwaltz_all_figures[0]);
+        this.newcomer_figures = vwaltz_all_figures.filter(figure => figure.level == "Newcomer");
+        this.bronze_figures = vwaltz_all_figures.filter(figure => figure.level == "Bronze");
+        this.silver_figures = vwaltz_all_figures.filter(figure => figure.level == "Silver");
+        this.gold_figures = vwaltz_all_figures.filter(figure => figure.level == "Gold");
         break;
 
         case "Slow Foxtrot":
-          this.change_figure(foxtrot_all_figures[0]);
-          this.newcomer_figures = foxtrot_all_figures.filter(figure => figure.level == "Newcomer");
-          this.bronze_figures = foxtrot_all_figures.filter(figure => figure.level == "Bronze");
-          this.silver_figures = foxtrot_all_figures.filter(figure => figure.level == "Silver");
-          this.gold_figures = foxtrot_all_figures.filter(figure => figure.level == "Gold");
+        this.change_figure(foxtrot_all_figures[0]);
+        this.newcomer_figures = foxtrot_all_figures.filter(figure => figure.level == "Newcomer");
+        this.bronze_figures = foxtrot_all_figures.filter(figure => figure.level == "Bronze");
+        this.silver_figures = foxtrot_all_figures.filter(figure => figure.level == "Silver");
+        this.gold_figures = foxtrot_all_figures.filter(figure => figure.level == "Gold");
         break;
 
         case "Quickstep":
-          this.change_figure(quickstep_all_figures[0]);
-          this.newcomer_figures = quickstep_all_figures.filter(figure => figure.level == "Newcomer");
-          this.bronze_figures = quickstep_all_figures.filter(figure => figure.level == "Bronze");
-          this.silver_figures = quickstep_all_figures.filter(figure => figure.level == "Silver");
-          this.gold_figures = quickstep_all_figures.filter(figure => figure.level == "Gold");
+        this.change_figure(quickstep_all_figures[0]);
+        this.newcomer_figures = quickstep_all_figures.filter(figure => figure.level == "Newcomer");
+        this.bronze_figures = quickstep_all_figures.filter(figure => figure.level == "Bronze");
+        this.silver_figures = quickstep_all_figures.filter(figure => figure.level == "Silver");
+        this.gold_figures = quickstep_all_figures.filter(figure => figure.level == "Gold");
         break;
       }
     },
@@ -105,10 +107,11 @@ var app = new Vue({
         app.instruction_both = this.current_figure.data[app.step].text[0];
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
+        var all_feet = [app.ml, app.mr, app.ll, app.lr];
 
         app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) {
           if (idx < 4) {
-            return value+app.ml[idx];
+            return isNaN(value) ? value : value + app.ml[idx];
           } else {
             return value;
           }
@@ -116,7 +119,7 @@ var app = new Vue({
 
         app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) {
           if (idx < 4) {
-            return value+app.mr[idx];
+            return isNaN(value) ? value : value + app.mr[idx];
           } else {
             return value;
           }
@@ -124,19 +127,18 @@ var app = new Vue({
 
         app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) {
           if (idx < 4) {
-            return value+app.ll[idx];
-          } else {
-            return value;
-          }
-       });
-        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
-          if (idx < 4) {
-            return value+app.lr[idx];
+            return isNaN(value) ? value : value + app.ll[idx];
           } else {
             return value;
           }
         });
-
+        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
+          if (idx < 4) {
+            return isNaN(value) ? value : value + app.lr[idx];
+          } else {
+            return value;
+          }
+        });
 
         this.update_feet_position();
       }
@@ -149,10 +151,37 @@ var app = new Vue({
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) { if(idx < 4) return app.ml[idx] - value});
-        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) { if(idx < 4) return app.mr[idx] - value});
-        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) { if(idx < 4) return app.ll[idx] - value});
-        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) { if(idx < 4) return app.lr[idx] - value});
+        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) {
+          if (idx < 4) {
+            return isNaN(value) ? value : app.ml[idx] - value;
+          } else {
+            return value;
+          }
+        });
+
+        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) {
+          if (idx < 4) {
+            return isNaN(value) ? value : app.mr[idx] - value;
+          } else {
+            return value;
+          }
+        });
+
+        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) {
+          if (idx < 4) {
+            return isNaN(value) ? value : app.ll[idx] - value;
+          } else {
+            return value;
+          }
+        });
+        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
+          if (idx < 4) {
+            return isNaN(value) ? value : app.lr[idx] - value;
+          } else {
+            return value;
+          }
+        });
+
         app.step -= 1;
         this.update_feet_position();
       }
@@ -195,10 +224,14 @@ var app = new Vue({
         console.log(data[5])
       } else {
         feet.style.transition = "all 2s";
-        console.log("all 2s");
       }
+      if (this.current_figure.data[app.step].type == "percent") {
+        feet.style.left = `${data[0]}%`;
+        feet.style.top = `${data[1]}%`;
+      } else {
       feet.style.left = `${data[0]}px`;
       feet.style.top = `${data[1]}px`;
+    }
       feet.style.transform = `rotate(${data[2]}deg)`;
       feet.style.opacity = `${data[3]}`;
     },
@@ -226,5 +259,5 @@ const mr_visual = document.getElementById("MR");
 const ll_visual = document.getElementById("LL");
 const lr_visual = document.getElementById("LR");
 
-app.change_dance("Slow Waltz");
-app.change_figure(waltz_all_figures[6]);
+app.change_dance("Viennese Waltz");
+app.change_figure(vwaltz_all_figures[2]);
