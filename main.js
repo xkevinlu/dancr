@@ -1,115 +1,136 @@
-
-Vue.component('figure-item', {
-  props:['figure'],
-  template: `
-  <li class="mdl-list__item" v:on-click="$emit('change')">
-  <span class="mdl-list__item-primary-content">
-  {{figure.name}}
-  </span>
-  </li>`
-})
-
-var app = new Vue({
-  el: "#app",
+//
+// Vue.component('figure-item', {
+//   props:['figure'],
+//   template: `<li class="mdl-list__item" v:on-click="$emit('change')">
+//   <span class="mdl-list__item-primary-content">
+//   {{figure.name}}
+//   </span>
+//   </li>`
+// })
+const app = new Vue({
+  el: '#app',
   data: {
     current_figure: waltz_all_figures[0],
     text: null,
-    instruction_both: "both_text",
-    instruction_lead: "lead text",
-    instruction_follow: "follow text",
-    ml: [0,0,0,0.3],
-    mr: [0,0,0,1],
-    ll: [0,0,0,1],
-    lr: [0,0,0,0.3],
+    instruction_both: 'both_text',
+    instruction_lead: 'lead text',
+    instruction_follow: 'follow text',
+    ml: [0, 0, 0, 0.3],
+    mr: [0, 0, 0, 1],
+    ll: [0, 0, 0, 1],
+    lr: [0, 0, 0, 0.3],
     preceding_figures: waltz_all_figures[0].preceding_figures,
     following_figures: waltz_all_figures[0].following_figures,
-    newcomer_figures: "Newcomer_figures",
-    bronze_figures: "Bronze_figures",
-    silver_figures: "Silver_figures",
-    gold_figures: "Gold_figures",
+    newcomer_figures: 'Newcomer_figures',
+    bronze_figures: 'Bronze_figures',
+    silver_figures: 'Silver_figures',
+    gold_figures: 'Gold_figures',
     lead_active: true,
     follow_active: true,
-    step:0,
-    step_total:999,
-    style: "Standard",
-    dance: "Waltz",
+    step: 0,
+    step_total: 999,
+    style: 'Standard',
+    dance: 'Waltz',
     foot_width: 20,
-    playing:false,
+    playing: false,
   },
   methods: {
     change_dance: function(dance) {
-      try{
+      try {
         document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer();
-      } catch (err){
+      } catch (err) {
         console.log(err);
       }
       this.dance = dance;
-      switch(dance) {
-        case "Slow Waltz":
-        this.change_figure(waltz_all_figures[0]);
-        this.newcomer_figures = waltz_all_figures.filter(figure => figure.level == "Newcomer");
-        this.bronze_figures = waltz_all_figures.filter(figure => figure.level == "Bronze");
-        this.silver_figures = waltz_all_figures.filter(figure => figure.level == "Silver");
-        this.gold_figures = waltz_all_figures.filter(figure => figure.level == "Gold");
-        break;
+      switch (dance) {
+        case 'Slow Waltz':
+          this.change_figure(waltz_all_figures[0]);
+          this.newcomer_figures = waltz_all_figures.filter(
+              (figure) => figure.level == 'Newcomer');
+          this.bronze_figures = waltz_all_figures.filter(
+              (figure) => figure.level == 'Bronze');
+          this.silver_figures = waltz_all_figures.filter(
+              (figure) => figure.level == 'Silver');
+          this.gold_figures = waltz_all_figures.filter(
+              (figure) => figure.level == 'Gold');
+          break;
 
-        case "Tango":
-        this.change_figure(tango_all_figures[0]);
-        this.newcomer_figures = tango_all_figures.filter(figure => figure.level == "Newcomer");
-        this.bronze_figures = tango_all_figures.filter(figure => figure.level == "Bronze");
-        this.silver_figures = tango_all_figures.filter(figure => figure.level == "Silver");
-        this.gold_figures = tango_all_figures.filter(figure => figure.level == "Gold");
-        break;
+        case 'Tango':
+          this.change_figure(tango_all_figures[0]);
+          this.newcomer_figures = tango_all_figures.filter(
+              (figure) => figure.level == 'Newcomer');
+          this.bronze_figures = tango_all_figures.filter(
+              (figure) => figure.level == 'Bronze');
+          this.silver_figures = tango_all_figures.filter(
+              (figure) => figure.level == 'Silver');
+          this.gold_figures = tango_all_figures.filter(
+              (figure) => figure.level == 'Gold');
+          break;
 
-        case "Viennese Waltz":
-        this.change_figure(vwaltz_all_figures[0]);
-        this.newcomer_figures = vwaltz_all_figures.filter(figure => figure.level == "Newcomer");
-        this.bronze_figures = vwaltz_all_figures.filter(figure => figure.level == "Bronze");
-        this.silver_figures = vwaltz_all_figures.filter(figure => figure.level == "Silver");
-        this.gold_figures = vwaltz_all_figures.filter(figure => figure.level == "Gold");
-        break;
+        case 'Viennese Waltz':
+          this.change_figure(vwaltz_all_figures[0]);
+          this.newcomer_figures = vwaltz_all_figures.filter(
+              (figure) => figure.level == 'Newcomer');
+          this.bronze_figures = vwaltz_all_figures.filter(
+              (figure) => figure.level == 'Bronze');
+          this.silver_figures = vwaltz_all_figures.filter(
+              (figure) => figure.level == 'Silver');
+          this.gold_figures = vwaltz_all_figures.filter(
+              (figure) => figure.level == 'Gold');
+          break;
 
-        case "Slow Foxtrot":
-        this.change_figure(foxtrot_all_figures[0]);
-        this.newcomer_figures = foxtrot_all_figures.filter(figure => figure.level == "Newcomer");
-        this.bronze_figures = foxtrot_all_figures.filter(figure => figure.level == "Bronze");
-        this.silver_figures = foxtrot_all_figures.filter(figure => figure.level == "Silver");
-        this.gold_figures = foxtrot_all_figures.filter(figure => figure.level == "Gold");
-        break;
+        case 'Slow Foxtrot':
+          this.change_figure(foxtrot_all_figures[0]);
+          this.newcomer_figures = foxtrot_all_figures.filter(
+              (figure) => figure.level == 'Newcomer');
+          this.bronze_figures = foxtrot_all_figures.filter(
+              (figure) => figure.level == 'Bronze');
+          this.silver_figures = foxtrot_all_figures.filter(
+              (figure) => figure.level == 'Silver');
+          this.gold_figures = foxtrot_all_figures.filter(
+              (figure) => figure.level == 'Gold');
+          break;
 
-        case "Quickstep":
-        this.change_figure(quickstep_all_figures[0]);
-        this.newcomer_figures = quickstep_all_figures.filter(figure => figure.level == "Newcomer");
-        this.bronze_figures = quickstep_all_figures.filter(figure => figure.level == "Bronze");
-        this.silver_figures = quickstep_all_figures.filter(figure => figure.level == "Silver");
-        this.gold_figures = quickstep_all_figures.filter(figure => figure.level == "Gold");
-        break;
+        case 'Quickstep':
+          this.change_figure(quickstep_all_figures[0]);
+          this.newcomer_figures = quickstep_all_figures.filter(
+              (figure) => figure.level == 'Newcomer');
+          this.bronze_figures = quickstep_all_figures.filter(
+              (figure) => figure.level == 'Bronze');
+          this.silver_figures = quickstep_all_figures.filter(
+              (figure) => figure.level == 'Silver');
+          this.gold_figures = quickstep_all_figures.filter(
+              (figure) => figure.level == 'Gold');
+          break;
       }
     },
-    change_figure: function (new_figure) {
-      this.current_figure = new_figure;
-      this.step_total = new_figure.data.length;
-      this.preceding_figures = new_figure.preceding_figures;
-      this.following_figures = new_figure.following_figures;
+    change_figure: function(newFigure) {
+      this.current_figure = newFigure;
+      this.step_total = newFigure.data.length;
+      this.preceding_figures = newFigure.preceding_figures;
+      this.following_figures = newFigure.following_figures;
       this.replay();
     },
-    play: async function () {
+    play: async function() {
       playing = true;
       while (this.step < this.step_total-1 && playing == true) {
         this.next();
-        await counterDelay(2000);
+        await this.wait(2000);
       }
     },
-    next: function () {
+    wait: function(ms) {
+      return new Promise( (resolve) => setTimeout(resolve, ms));
+    },
+    next: function() {
       if (app.step < app.step_total-1) {
         app.step += 1;
 
         app.instruction_both = this.current_figure.data[app.step].text[0];
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
-        var all_feet = [app.ml, app.mr, app.ll, app.lr];
+        // const all_feet = [app.ml, app.mr, app.ll, app.lr];
 
-        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) {
+        app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
           if (idx < 4) {
             return isNaN(value) ? value : value + app.ml[idx];
           } else {
@@ -117,22 +138,21 @@ var app = new Vue({
           }
         });
 
-        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) {
+        app.mr = this.current_figure.data[app.step].mr.map((value, idx) => {
           if (idx < 4) {
             return isNaN(value) ? value : value + app.mr[idx];
           } else {
             return value;
           }
         });
-
-        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) {
+        app.ll = this.current_figure.data[app.step].ll.map((value, idx) => {
           if (idx < 4) {
             return isNaN(value) ? value : value + app.ll[idx];
           } else {
             return value;
           }
         });
-        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
+        app.lr = this.current_figure.data[app.step].lr.map((value, idx) => {
           if (idx < 4) {
             return isNaN(value) ? value : value + app.lr[idx];
           } else {
@@ -143,7 +163,7 @@ var app = new Vue({
         this.update_feet_position();
       }
     },
-    prev: function () {
+    prev: function() {
       if (app.step > 0) {
         playing = false;
 
@@ -151,42 +171,46 @@ var app = new Vue({
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
 
-        app.ml = this.current_figure.data[app.step].ml.map(function (value, idx) {
-          if (idx < 4) {
-            return isNaN(value) ? value : app.ml[idx] - value;
-          } else {
-            return value;
-          }
-        });
+        app.ml = this.current_figure.data[app.step].ml.map(
+            function(value, idx) {
+              if (idx < 4) {
+                return isNaN(value) ? value : app.ml[idx] - value;
+              } else {
+                return value;
+              }
+            });
 
-        app.mr = this.current_figure.data[app.step].mr.map(function (value, idx) {
-          if (idx < 4) {
-            return isNaN(value) ? value : app.mr[idx] - value;
-          } else {
-            return value;
-          }
-        });
+        app.mr = this.current_figure.data[app.step].mr.map(
+            function(value, idx) {
+              if (idx < 4) {
+                return isNaN(value) ? value : app.mr[idx] - value;
+              } else {
+                return value;
+              }
+            });
 
-        app.ll = this.current_figure.data[app.step].ll.map(function (value, idx) {
-          if (idx < 4) {
-            return isNaN(value) ? value : app.ll[idx] - value;
-          } else {
-            return value;
-          }
-        });
-        app.lr = this.current_figure.data[app.step].lr.map(function (value, idx) {
-          if (idx < 4) {
-            return isNaN(value) ? value : app.lr[idx] - value;
-          } else {
-            return value;
-          }
-        });
+        app.ll = this.current_figure.data[app.step].ll.map(
+            function(value, idx) {
+              if (idx < 4) {
+                return isNaN(value) ? value : app.ll[idx] - value;
+              } else {
+                return value;
+              }
+            });
+        app.lr = this.current_figure.data[app.step].lr.map(
+            function(value, idx) {
+              if (idx < 4) {
+                return isNaN(value) ? value : app.lr[idx] - value;
+              } else {
+                return value;
+              }
+            });
 
         app.step -= 1;
         this.update_feet_position();
       }
     },
-    replay: function () {
+    replay: function() {
       playing = false;
       app.step = 0;
 
@@ -216,48 +240,50 @@ var app = new Vue({
       if (data[4] != undefined ) {
         feet.style.transformOrigin = data[4];
       } else {
-        feet.style.transformOrigin = "center";
+        feet.style.transformOrigin = 'center';
       }
       console.log(data);
       if (data[5] != undefined ) {
         feet.style.transition = data[5];
-        console.log(data[5])
+        console.log(data[5]);
       } else {
-        feet.style.transition = "all 2s";
+        feet.style.transition = 'all 2s';
       }
-      if (this.current_figure.data[app.step].type == "percent") {
+      if (this.current_figure.data[app.step].type == 'percent') {
         feet.style.left = `${data[0]}%`;
         feet.style.top = `${data[1]}%`;
       } else {
-      feet.style.left = `${data[0]}px`;
-      feet.style.top = `${data[1]}px`;
-    }
+        feet.style.left = `${data[0]}px`;
+        feet.style.top = `${data[1]}px`;
+      }
       feet.style.transform = `rotate(${data[2]}deg)`;
       feet.style.opacity = `${data[3]}`;
     },
     update_feet_position: function() {
-      app.moveFoot(ml_visual,app.ml);
-      app.moveFoot(mr_visual,app.mr);
-      app.moveFoot(ll_visual,app.ll);
-      app.moveFoot(lr_visual,app.lr);
+      app.moveFoot(mlSvg, app.ml);
+      app.moveFoot(mrSvg, app.mr);
+      app.moveFoot(llSvg, app.ll);
+      app.moveFoot(lrSvg, app.lr);
     },
     set_foot_width: function(px) {
-      ml_visual.style.width = px + "px";
-      mr_visual.style.width = px + "px";
-      ll_visual.style.width = px + "px";
-      lr_visual.style.width = px + "px";
-    }
-  }
-})
+      mlSvg.style.width = px + 'px';
+      mrSvg.style.width = px + 'px';
+      llSvg.style.width = px + 'px';
+      lrSvg.style.width = px + 'px';
+    },
+  },
+});
 
-function counterDelay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-const ml_visual = document.getElementById("ML");
-const mr_visual = document.getElementById("MR");
-const ll_visual = document.getElementById("LL");
-const lr_visual = document.getElementById("LR");
+const mlSvg = document.getElementById('ML');
+const mrSvg = document.getElementById('MR');
+const llSvg = document.getElementById('LL');
+const lrSvg = document.getElementById('LR');
 
-app.change_dance("Viennese Waltz");
-app.change_figure(vwaltz_all_figures[2]);
+// Start
+app.change_dance('Slow Waltz');
+app.change_figure(waltz_all_figures[0]);
+
+// debug
+// app.change_dance('Viennese Waltz');
+// app.change_figure(vwaltz_all_figures[8]);
