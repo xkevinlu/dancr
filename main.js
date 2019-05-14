@@ -33,6 +33,8 @@ const app = new Vue({
     dance: 'Waltz',
     foot_width: 20,
     playing: false,
+    rewinding: false,
+    replaying: false,
   },
   methods: {
     change_dance: function(dance) {
@@ -115,8 +117,9 @@ const app = new Vue({
       playing = true;
       while (this.step < this.step_total-1 && playing == true) {
         this.next();
-        await this.wait(2000);
+        await this.wait(3000);
       }
+      playing = false;
     },
     wait: function(ms) {
       return new Promise( (resolve) => setTimeout(resolve, ms));
@@ -165,7 +168,8 @@ const app = new Vue({
     },
     prev: function() {
       if (app.step > 0) {
-        playing = false;
+        this.playing = false;
+        this.rewinding = true;
 
         app.instruction_both = this.current_figure.data[app.step].text[0];
         app.instruction_lead = this.current_figure.data[app.step].text[1];
@@ -207,11 +211,17 @@ const app = new Vue({
             });
 
         app.step -= 1;
+        mlSvg.style.transition = 'all 2s';
+        mrSvg.style.transition = 'all 2s';
+        llSvg.style.transition = 'all 2s';
+        lrSvg.style.transition = 'all 2s';
         this.update_feet_position();
+        this.rewinding = false;
       }
     },
     replay: function() {
-      playing = false;
+      this.playing = false;
+      this.replaying = true;
       app.step = 0;
 
       app.instruction_both = this.current_figure.data[0].text[0];
@@ -222,7 +232,12 @@ const app = new Vue({
       app.mr = this.current_figure.data[0].mr;
       app.ll = this.current_figure.data[0].ll;
       app.lr = this.current_figure.data[0].lr;
+      mlSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
+      mrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
+      llSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
+      lrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
       this.update_feet_position();
+      this.replaying = false;
     },
     lead: function() {
       app.lead_active = true;
@@ -243,9 +258,11 @@ const app = new Vue({
         feet.style.transformOrigin = 'center';
       }
       console.log(data);
-      if (data[5] != undefined ) {
+      // TRANSITION, if specified use it going forward, and condition for replay
+      if ((data[5] != undefined) && (this.rewinding == false) && (this.replaying == false) ) {
         feet.style.transition = data[5];
-        console.log(data[5]);
+      } else if (this.replaying == true) {
+        feet.style.transition = 'all 2s';
       } else {
         feet.style.transition = 'all 2s';
       }
@@ -282,7 +299,7 @@ const lrSvg = document.getElementById('LR');
 
 // Start
 app.change_dance('Slow Waltz');
-app.change_figure(waltz_all_figures[0]);
+app.change_figure(waltz_all_figures[14]);
 
 // debug
 // app.change_dance('Viennese Waltz');
