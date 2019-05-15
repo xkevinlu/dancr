@@ -114,8 +114,8 @@ const app = new Vue({
       this.replay();
     },
     play: async function() {
-      playing = true;
-      while (this.step < this.step_total-1 && playing == true) {
+      this.playing = true;
+      while (this.step < this.step_total-1 && this.playing == true) {
         this.next();
         await this.wait(3000);
       }
@@ -171,10 +171,6 @@ const app = new Vue({
         this.playing = false;
         this.rewinding = true;
 
-        app.instruction_both = this.current_figure.data[app.step].text[0];
-        app.instruction_lead = this.current_figure.data[app.step].text[1];
-        app.instruction_follow = this.current_figure.data[app.step].text[2];
-
         app.ml = this.current_figure.data[app.step].ml.map(
             function(value, idx) {
               if (idx < 4) {
@@ -211,6 +207,10 @@ const app = new Vue({
             });
 
         app.step -= 1;
+        app.instruction_both = this.current_figure.data[app.step].text[0];
+        app.instruction_lead = this.current_figure.data[app.step].text[1];
+        app.instruction_follow = this.current_figure.data[app.step].text[2];
+
         mlSvg.style.transition = 'all 2s';
         mrSvg.style.transition = 'all 2s';
         llSvg.style.transition = 'all 2s';
@@ -299,7 +299,7 @@ const lrSvg = document.getElementById('LR');
 
 // Start
 app.change_dance('Slow Waltz');
-app.change_figure(waltz_all_figures[15]);
+app.change_figure(waltz_all_figures[26]);
 
 // debug
 // app.change_dance('Viennese Waltz');
