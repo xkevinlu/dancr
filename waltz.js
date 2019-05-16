@@ -6,9 +6,9 @@ const natural_turn_data = [
       'Begin with weight on right foot',
     ],
     ml: [75, 10, 135, 1],
-    mr: [45, 40, 135, 0.2],
-    ll: [70, 90, -45, 0.2],
-    lr: [100, 60, -45, 1],
+    mr: [55, 30, 135, 0.2],
+    ll: [85, 75, -45, 0.2],
+    lr: [105, 55, -45, 1],
   },
   {
     text: [
@@ -39,8 +39,8 @@ const natural_turn_data = [
       '3. LF closes to RF (T),  cont. to rise',
     ],
     ml: [0, 15, 45, -0.8],
-    mr: [110, 75, 45, 0.8],
-    ll: [70, 15, 135, 0.8],
+    mr: [100, 95, 45, 0.8],
+    ll: [60, 35, 135, 0.8],
     lr: [0, 0, 0, -0.8],
   },
 ];
@@ -52,10 +52,10 @@ const reverse_turn_data = [
       'Begin with weight on right foot',
       'Begin with weight on left foot',
     ],
-    ml: [50, 200, 45, 0.2],
+    ml: [60, 210, 45, 0.2],
     mr: [80, 230, 45, 1],
-    ll: [140, 200, 225, 1],
-    lr: [110, 170, 225, 0.2],
+    ll: [130, 200, 225, 1],
+    lr: [110, 180, 225, 0.2],
   },
   {
     text: [
@@ -63,7 +63,7 @@ const reverse_turn_data = [
       '1. LF fwd (HT),  commence to rise end of 1',
       '1. RF back (TH),  commence to rise end of 1 , NFR',
     ],
-    ml: [lgStep, -mdStep, -45, 0.8],
+    ml: [mdStep, -mdStep, -45, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
     lr: [smStep, -lgStep, -45, 0.8],
@@ -75,7 +75,7 @@ const reverse_turn_data = [
       '2. LF to side (T),  cont. to rise',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [2 * xlStep, 2 * (-lgStep), -90, 0.8],
+    mr: [180, 2 * (-lgStep)-10, -90, 0.8],
     ll: [2 * smStep, 2 * (-lgStep), -135, 0.8],
     lr: [0, 0, 0, -0.8],
   },
@@ -85,10 +85,10 @@ const reverse_turn_data = [
       '3. RF closes to LF (T),  cont. to rise',
       '3. LF closes to RF (T),  cont. to rise',
     ],
-    ml: [lgStep*2-10, -smStep-5, -90, 0.8],
+    ml: [140, -75, -90, 0.8],
     mr: [0, -5, -45, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [mdStep+8, 0.5* (-smStep), -90, 0.8],
+    lr: [60, -40, -90, 0.8],
   },
 ];
 
@@ -158,9 +158,9 @@ const rf_closed_change_data = [
       'Begin with weight on right foot',
     ],
     ml: [50, 200, 45, 1],
-    mr: [80, 230, 45, 0.2],
-    ll: [140, 200, 225, 0.2],
-    lr: [110, 170, 225, 1],
+    mr: [70, 220, 45, 0.2],
+    ll: [120, 190, 225, 0.2],
+    lr: [100, 170, 225, 1],
   },
   {
     text: [
@@ -202,8 +202,8 @@ const rf_closed_change_data = [
       '3. LF close to RF (T)',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [-mdStep, -mdStep, 0, 0.8],
-    ll: [-mdStep, -mdStep, 0, 0.8],
+    mr: [-mdStep-5, -mdStep-5, 0, 0.8],
+    ll: [-mdStep-5, -mdStep-5, 0, 0.8],
     lr: [0, 0, 0, -0.8],
   },
 ];
@@ -216,9 +216,9 @@ const lf_closed_change_data = [
       'Begin with weight on right foot',
     ],
     ml: [75, 10, 135, 0.2],
-    mr: [45, 40, 135, 1],
-    ll: [70, 90, -45, 1],
-    lr: [100, 60, -45, 0.2],
+    mr: [55, 30, 135, 1],
+    ll: [80, 75, -45, 1],
+    lr: [100, 55, -45, 0.2],
   },
   {
     text: [
@@ -260,10 +260,10 @@ const lf_closed_change_data = [
       '3. RF close to LF (TH),  lower end of 3',
       '3. LF close to RF (TH),  lower end of 3',
     ],
-    ml: [-mdStep, mdStep, 0, 0.8],
+    ml: [-mdStep-5, mdStep+5, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [-mdStep, mdStep, 0, 0.8],
+    lr: [-mdStep-5, mdStep+5, 0, 0.8],
   },
 ];
 
@@ -671,10 +671,10 @@ const reverseCorteData = [
       'Begin with weight on left foot',
       'Begin with weight on right foot',
     ],
-    ml: [15, 34, 270, 1, 'top', 'all 2s'],
-    mr: [26, 14, 270, 0.2, 'bottom', 'all 2s'],
-    ll: [10, 22, 90, 0.2, 'top', 'all 2s'],
-    lr: [10, 30, 90, 1, 'top', 'all 2s'],
+    ml: [15, 64, 270, 1, 'top', 'all 2s'],
+    mr: [26, 44, 270, 0.2, 'bottom', 'all 2s'],
+    ll: [10, 52, 90, 0.2, 'top', 'all 2s'],
+    lr: [10, 60, 90, 1, 'top', 'all 2s'],
   },
   {
     type: 'percent',

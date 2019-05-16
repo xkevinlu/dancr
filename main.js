@@ -299,7 +299,7 @@ const lrSvg = document.getElementById('LR');
 
 // Start
 app.change_dance('Slow Waltz');
-app.change_figure(waltz_all_figures[32]);
+app.change_figure(waltz_all_figures[0]);
 
 // debug
 // app.change_dance('Viennese Waltz');
