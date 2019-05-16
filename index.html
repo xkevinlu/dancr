@@ -77,19 +77,23 @@
               <h4 class="text-center bold">{{current_figure.name}}</h4>
             </div>
         </div>
-        <div id="view-btn-group">
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !follow_active }" id="btn-lead" v-on:click="lead()">
-            LEAD
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !lead_active }" id="btn-follow" v-on:click="follow()">
-            FOLLOW
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
-            BOTH
-          </button>
-        </div>
-        <div id="diagram">
-          <div class="LOD">
+        <div id="render_window">
+
+          <div id="view-btn-group">
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'male-color': !follow_active }" id="btn-lead" v-on:click="lead()">
+              <i class="fas fa-male gender-icons"></i>
+            </button>
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'female-color': !lead_active }" id="btn-follow" v-on:click="follow()">
+              <i class="fas fa-female gender-icons"></i>
+            </button>
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
+              <i class="material-icons">
+              wc
+              </i>
+            </button>
+          </div>
+
+          <!-- <div class="LOD">
             <svg viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="LOD-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
                 <path id="Line" d="M156,30.5 L107,30.5 L107,24.5 L156,24.5 L156,10.5 L190,27.5 L156,44.5 L156,30.5 Z" fill="#000000" fill-rule="nonzero"></path>
@@ -98,7 +102,9 @@
                 </text>
               </g>
             </svg>
-          </div>
+          </div> -->
+
+        <div id="diagram">
           <div class="M" id="ML" v-show="lead_active">
             <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="ML-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -148,19 +154,20 @@
               </g>
             </svg>
           </div>
-          <div class="next-prev">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
-          </div>
-        </div>
 
-          <div class="instruction">
+        </div> <!-- render window -->
+          <div class="instruction-container">
           <span class="instruction" v-show="!follow_active"> {{instruction_lead}} </span>
           <span class="instruction" v-show="!lead_active"> {{instruction_follow}} </span>
           <span class="instruction" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
+        <div class="next-prev">
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
+        </div>
+      </div>
 
       </div> <!--graphic container-->
 

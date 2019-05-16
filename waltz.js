@@ -1784,23 +1784,465 @@ const dragHesitationData = [
   },
 ];
 
-const dataTemplates = {
+const leftWhiskData = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards DC',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [20, 52, -90, 1, 'top', 'all 2s'],
+    mr: [20, 44, -90, 0.2, 'top', 'all 2s'],
+    ll: [15, 40, 90, 0.2, 'top', 'all 2s'],
+    lr: [15, 48, 90, 1, 'top','all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 1,
+    text: [
+      '1. Moving together towards DC',
+      '1. LF fwd (HT),  commence to rise end of 1',
+      '1. RF back (TH),  commence to rise end of 1 , NFR',
+    ],
+    mr: [20, -5, -22.5, 0.8, 'top'],
+    ml: [0, 0, 0, -0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+    ll: [20, 0, 0, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2,
+    text: [
+      '2. Moving together towards LOD',
+      '2. RF to side (T),  cont. to rise',
+      '2. LF to side (T),  cont. to rise',
+    ],
+    ml: [50, -12, -135, 0.8, 'top', 'left 2s, top 1.5s ease-in, opacity 2s, transform 2s'],
+    mr: [0, 0, -22.5, -0.8, 'top'],
+    ll: [0, 0, -90, -0.8, 'top'],
+    lr: [50, -5, -90, 0.8, 'top', 'left 2s, top 1.5s ease-in, opacity 2s, transform 2s'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      '3. Collecting weight under body',
+      '3. LF closes to RF (T),  cont. to rise',
+      '3. RF closes to LF (T),  cont. to rise',
+    ],
+    ml: [0, 0, 0, -0.8, 'top', 'all 2s'],
+    mr: [30, -10, -90, 0.8, 'top', 'all 2s'],
+    ll: [40, 17, -90, 0.8, 'top', 'all 2s'],
+    lr: [0, 0, -45, -0.8, 'top', 'all 2s'],
+  },
+];
 
+const contraCheckData = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards DC',
+      'Begin with weight on right foot',
+      'Begin with weight on left foot',
+    ],
+    ml: [40, 40, 135, 0.2, 'top', 'all 2s'],
+    mr: [35, 45, 135, 1, 'top', 'all 2s'],
+    ll: [35, 50, -45, 1, 'top', 'all 2s'],
+    lr: [40, 45, -45, 0.2, 'top', 'all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 1,
+    text: [
+      'Moving DW with check',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [20, 20, -45, 0.8, 'top'],
+    mr: [0, 0, 0, -0.2, 'top'],
+    ll: [0, 0, 0, -0.2, 'top'],
+    lr: [20, 20, -45, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2,
+    text: [
+      'Moving DW with check',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [-18, -16, 45, -0.8, 'top'],
+    mr: [0, 0, 0, 0.2, 'top'],
+    ll: [-5, 0, 90, 0.2, 'top'],
+    lr: [-22, -15, 135, -0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      'Moving DW with check',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [20, 0, 0, 0.8, 'top'],
+    mr: [0, 0, 0, -0.8, 'top'],
+    ll: [0, 0, 0, -0.8, 'top'],
+    lr: [20, 0, 0, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3.5,
+    text: [
+      '3&. Collect under body',
+      '3&. RF collects to LF',
+      '3&. LF collects to RF',
+    ],
+    ml: [0, 0, 0, 0, 'top'],
+    mr: [20, 0, 0, 0, 'top'],
+    ll: [20, 0, 0, 0, 'top'],
+    lr: [0, 0, 0, 0, 'top'],
+  },
+];
+
+
+const closedWingData = [
+  {
+    count: 0,
+    type: 'percent',
+    text: [
+      'Prepare to move LOD',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [25, 50, 90, 1, 'top'],
+    mr: [25, 58, 90, 0.2, 'top'],
+    ll: [30, 62, -90, 0.2, 'top'],
+    lr: [30, 54, -90, 1, 'top'],
+  },
+  {
+    count: 1,
+    type: 'percent',
+    text: [
+      '1. Moving together towards LOD',
+      '1. RF fwd in CBMP (HT), outside partner',
+      '1. LF back in CBMP (TH), outside partner',
+    ],
+    ml: [0, 0, 0, -0.8, 'top'],
+    mr: [18, -20, 0, 0.8, 'top'],
+    ll: [20, -20, 0, 0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+  },
+  {
+    count: 2,
+    type: 'percent',
+    text: [
+      '2. Danced under body',
+      '2. LF starts to close to RF',
+      '2. RF to side and slightly back (T)',
+    ],
+    ml: [10, -19, 0, 0, 'top'],
+    mr: [0, 0, 0, 0, 'top'],
+    ll: [0, 0, 0, -0.8, 'top'],
+    lr: [20, -35, 0, 0.8, 'top'],
+  },
+  {
+    count: 3,
+    type: 'percent',
+    text: [
+      '3. Wing position, lady left side outside',
+      '3. LF closes to RF without weight',
+      '3. LF fwd in CBMP (TH), outside partner on left side',
+    ],
+    ml: [8, 0, 0, 0, 'top'],
+    mr: [0, 0, 0, 0, 'top'],
+    ll: [-8, -18, 0, 0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+  },
+];
+
+const turningLockToRightData = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards DC',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [20, 52, -90, 1, 'top', 'all 2s'],
+    mr: [20, 44, -90, 0.2, 'top', 'all 2s'],
+    ll: [15, 40, 90, 0.2, 'top', 'all 2s'],
+    lr: [15, 48, 90, 1, 'top', 'all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 1,
+    text: [
+      '1. Moving together LOD',
+      '1. RF back (T), R side leading',
+      '1. LF fwd, (T), L side leading',
+    ],
+    mr: [20, 15, 22.5, 0.8, 'top'],
+    ml: [0, 0, 0, -0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+    ll: [20, 0, 0, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 1.5,
+    text: [
+      '1&. Moving together LOD',
+      '1&. RF back (T), R side leading',
+      '1&. LF fwd, (T), L side leading',
+    ],
+    mr: [0, 0, 22.5, -0.8, 'top'],
+    ml: [25, -5, 90, 0.8, 'top'],
+    lr: [25, 0, 90, 0.8, 'top'],
+    ll: [0, 0, 90, -0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2,
+    text: [
+      '2. Moving together LOD',
+      '2. RF back (T), R side leading',
+      '2. LF fwd, (T), L side leading',
+    ],
+    mr: [20, -16, 90, 0.8, 'top'],
+    ml: [0, 0, 0, -0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+    ll: [30, 5, 45, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2.5,
+    text: [
+      '2&. Moving together LOD',
+      '2&. RF back (T), R side leading',
+      '2&. LF fwd, (T), L side leading',
+    ],
+    mr: [3, -3, 45, 0, 'top'],
+    ml: [20, -13, 90, 0, 'top'],
+    lr: [32, -6, 180, 0, 'top', 'left 2s, top 2s cubic-bezier(0.175, 0.885, 0.32, 2.575), opacity 2s, transform 2s'],
+    ll: [0, 0, 135, 0, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      '3. Moving together LOD',
+      '3. RF back (T), R side leading',
+      '3. LF fwd, (T), L side leading',
+    ],
+    mr: [0, 0, 0, -0.8, 'top'],
+    ml: [15, -15, 0, 0.8, 'top'],
+    lr: [15, -15, 0, 0.8, 'top'],
+    ll: [0, 0, 0, -0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3.5,
+    text: [
+      '3&. Collect under body',
+      '3&. RF collects to LF',
+      '3&. LF collects to RF',
+    ],
+    mr: [15, -15, 0, 0, 'top'],
+    ml: [0, 0, 0, 0, 'top'],
+    lr: [0, 0, 0, 0, 'top'],
+    ll: [15, -15, 0, 0, 'top'],
+  },
+];
+
+const fallawaySlipPivotData = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards DC',
+      'Begin with weight on right foot',
+      'Begin with weight on left foot',
+    ],
+    ml: [10, 70, 45, 0.2, 'top'],
+    mr: [15, 75, 45, 1, 'top'],
+    ll: [20, 75, 225, 1, 'top'],
+    lr: [15, 70, 225, 0.2, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 1,
+    text: [
+      '1. Moving together towards DC',
+      '1. LF fwd (HT)',
+      '1. RF back (TH)',
+    ],
+    ml: [10, -20, -45, 0.8, 'top'],
+    mr: [0, 0, 0, -0.8, 'top'],
+    ll: [0, 0, 0, -0.8, 'top'],
+    lr: [10, -22, -45, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 1.5,
+    text: [
+      '1&. Moving together towards DC',
+      '1&. RF back, R side leading (T)',
+      '1&. LF back, L side leading (T)',
+    ],
+    ml: [0, 0, -45, -0.8, 'top'],
+    mr: [25, -25, -135, 0.8, 'top'],
+    ll: [20, -30, -45, 0.8, 'top'],
+    lr: [0, 0, 45, -0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2,
+    text: [
+      '2. Moving together towards DC',
+      '2. LF back in CBMP (TH slip pivot)',
+      '2. RF back in CBMP, small step (T)',
+    ],
+    ml: [40, -5, -90, 0.8, 'top', 'left 2s, top 2s cubic-bezier(.6,-2.41,.57,.58), opacity 2s, transform 2s'],
+    mr: [0, 0, 0, -0.8, 'top'],
+    ll: [0, 0, 0, -0.8, 'top'],
+    lr: [25, -10, -90, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      '3. Moving together towards DC',
+      '3. RF back, LF held in CBMP (toe pivot)',
+      '3. LF fwd in CBMP, RF held behind in CBMP (toe pivot)',
+    ],
+    ml: [0, 0, 0, -0.8, 'top'],
+    mr: [20, -30, -112.5, 0.8, 'top'],
+    ll: [22, -20, -180, 0.8, 'top'],
+    lr: [0, 0, -90, -0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 3.5,
+    text: [
+      '3&. Moving together towards DC',
+      '3&. RF back, LF held in CBMP (toe pivot)',
+      '3&. LF fwd in CBMP, RF held behind in CBMP (toe pivot)',
+    ],
+    ml: [20, -27, -135, 0, 'top'],
+    mr: [0, 0, -67.5, 0, 'top'],
+    ll: [0, 0, -90, 0, 'top'],
+    lr: [32, -15, -135, 0, 'top'],
+  },
+];
+
+const hoverCorteData = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards LOD',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
+    ml: [20, 52, -90, 1, 'top', 'all 2s'],
+    mr: [20, 44, -90, 0.2, 'top', 'all 2s'],
+    ll: [15, 40, 90, 0.2, 'top', 'all 2s'],
+    lr: [15, 48, 90, 1, 'top', 'all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 1,
+    text: [
+      '1. Moving together towards LOD',
+      '1. RF back (TH)',
+      '1. LF fwd (HT)',
+    ],
+    mr: [20, -5, -22.5, 0.8, 'top'],
+    ml: [0, 0, 0, -0.8, 'top'],
+    lr: [0, 0, 0, -0.8, 'top'],
+    ll: [20, 0, 0, 0.8, 'top'],
+  },
+  {
+    type: 'percent',
+    count: 2,
+    text: [
+      '2. Moving together towards LOD',
+      '2. LF to side & slightly fwd (T)',
+      '2. RF to side & slightly fwd (T)',
+    ],
+    ml: [50, -12, -135, 0.8, 'top', 'left 2s, top 1.5s ease-in, opacity 2s, transform 2s'],
+    mr: [0, 0, -22.5, -0.8, 'top'],
+    ll: [0, 0, -90, -0.8, 'top'],
+    lr: [55, -3, -90, 0.8, 'top', 'left 2s, top 1.5s ease-in, opacity 2s, transform 2s'],
+  },
+  {
+    type: 'percent',
+    count: 2.5,
+    text: [
+      '2&. Hover and shape',
+      '2&. Weight on LF',
+      '2&. Brush RF to LF',
+    ],
+    ml: [0, 0, 0, 0, 'top', 'all 2s'],
+    mr: [25, 5, -90, 0, 'top', 'all 2s'],
+    ll: [30, 9, -45, 0, 'top', 'all 2s'],
+    lr: [0, 0, -45, 0, 'top', 'all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      '3. Moving Backing DC',
+      '3. Transfer weight to RF (T)',
+      '3. LF diag fwd (TH)',
+    ],
+    ml: [0, 0, 0, -0.8, 'top', 'all 2s'],
+    mr: [-20, -20, 0, 0.8, 'top', 'all 2s'],
+    ll: [-20, -20, 0, 0.8, 'top', 'all 2s'],
+    lr: [0, 0, 0, -0.8, 'top', 'all 2s'],
+  },
+  {
+    type: 'percent',
+    count: 3,
+    text: [
+      '3&. Collecting weight under body',
+      '3&. Collect LF and lower end of 3',
+      '3&. Collect RF and lower end of 3',
+    ],
+    ml: [-20, -20, 0, 0, 'top', 'all 2s'],
+    mr: [0, 0, 0, 0, 'top', 'all 2s'],
+    ll: [0, 0, 0, 0, 'top', 'all 2s'],
+    lr: [-20, -20, 0, 0, 'top', 'all 2s'],
+  },
+];
+
+const dataTemplates = [
+  {
+    type: 'percent',
+    count: 0,
+    text: [
+      'Prepare to move towards DC',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
+    ],
   // Top to bottom is roughly 8,-21
   // Bottom Left
   ml: [10, 60, 45, 0.2, 'top'],
   mr: [15, 65, 45, 1, 'top'],
   ll: [20, 65, 225, 1, 'top'],
   lr: [15, 60, 225, 0.2, 'top'],
-
-  // Center Left
-
+  },
+  {
   // Blank
   ml: [0, 0, 0, 0, 'top'],
   mr: [0, 0, 0, 0, 'top'],
   ll: [0, 0, 0, 0, 'top'],
   lr: [0, 0, 0, 0, 'top'],
-};
+  },
+];
 
 const waltz_all_figures = [
   new Figure('Natural Turn', 'Waltz', 'Newcomer', 'Standard', natural_turn_data),
@@ -1833,12 +2275,12 @@ const waltz_all_figures = [
   new Figure('Turning Lock to Left', 'Waltz', 'Silver', 'Standard', turningLocktoLeftData),
   new Figure('Drag Hesitation', 'Waltz', 'Silver', 'Standard', dragHesitationData),
 
-  new Figure('Left Whisk', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
-  new Figure('Contra Check', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
-  new Figure('Closed Wing', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
-  new Figure('Turning Lock to Right', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
-  new Figure('Fallaway Reverse Slip Pivot', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
-  new Figure('Hover Corte', 'Waltz', 'Gold', 'Standard', chasse_to_right_data),
+  new Figure('Left Whisk', 'Waltz', 'Gold', 'Standard', leftWhiskData),
+  new Figure('Contra Check', 'Waltz', 'Gold', 'Standard', contraCheckData),
+  new Figure('Closed Wing', 'Waltz', 'Gold', 'Standard', closedWingData),
+  new Figure('Turning Lock to Right', 'Waltz', 'Gold', 'Standard', turningLockToRightData),
+  new Figure('Fallaway Reverse Slip Pivot', 'Waltz', 'Gold', 'Standard', fallawaySlipPivotData),
+  new Figure('Hover Corte', 'Waltz', 'Gold', 'Standard', hoverCorteData),
 ];
 
 // Natural Turn
