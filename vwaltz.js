@@ -565,7 +565,7 @@ const naturalFleckerlData = [
   },
 ];
 
-const contraCheckData = [
+const vContraCheckData = [
   {
     type: 'percent',
     text: [
@@ -604,7 +604,6 @@ const contraCheckData = [
   },
 ];
 
-
 const vwaltz_all_figures = [
   new Figure('Natural Turn (1-3)', 'Viennese Waltz', 'Bronze', 'Standard', vNaturalTurn123Data),
   new Figure('Natural Turn (4-6)', 'Viennese Waltz', 'Bronze', 'Standard', vNaturalTurn456Data),
@@ -618,8 +617,7 @@ const vwaltz_all_figures = [
   new Figure('Reverse Fleckerl', 'Viennese Waltz', 'Silver', 'Standard', reverseFleckerlData),
 
   new Figure('Natural Fleckerl', 'Viennese Waltz', 'Gold', 'Standard', naturalFleckerlData),
-  new Figure('Contra Check', 'Viennese Waltz', 'Gold', 'Standard', contraCheckData),
-
+  new Figure('Contra Check', 'Viennese Waltz', 'Gold', 'Standard', vContraCheckData),
 ];
 
 vwaltz_all_figures[0].preceding_figures= [
