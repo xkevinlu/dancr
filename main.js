@@ -278,7 +278,6 @@ const app = new Vue({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         foot.style.left = `${data[0]}%`;
         foot.style.top = `${data[1]}%`;
         foot.style.transform = `rotate(${data[2]})`;
@@ -296,9 +295,6 @@ const app = new Vue({
           (this.replaying == false)) {
         this.show_footwork(foot, data[6]);
 =======
-=======
->>>>>>> parent of 0677e4f... footwork and timing
-=======
 >>>>>>> parent of 0677e4f... footwork and timing
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
@@ -309,9 +305,6 @@ const app = new Vue({
         feet.style.top = `${data[1]}px`;
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 0677e4f... footwork and timing
-=======
 >>>>>>> parent of 0677e4f... footwork and timing
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
@@ -327,7 +320,6 @@ const app = new Vue({
       app.moveFoot(llSvg, app.ll);
       app.moveFoot(lrSvg, app.lr);
     },
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -369,8 +361,6 @@ const app = new Vue({
           break;
       }
     },
-=======
->>>>>>> parent of 0677e4f... footwork and timing
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
 =======
