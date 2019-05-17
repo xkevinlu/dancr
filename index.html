@@ -14,7 +14,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-85741607-3');
   </script>
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -120,11 +119,11 @@
           <div class="M" id="MR" v-show="lead_active">
             <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="MR-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
+                    <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
+                </g>
                   <g id="MR-H" transform="translate(32.000000, 156.000000) scale(-1, 1) translate(-32.000000, -156.000000) translate(5.000000, 127.000000)" fill="#069FE6" fill-rule="nonzero">
                       <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
-                  </g>
-                  <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
-                      <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
                   </g>
               </g>
             </svg>
@@ -154,7 +153,7 @@
               </g>
             </svg>
           </div>
-        </div> <!-- scroll --> 
+        </div> <!-- scroll -->
 
         </div> <!-- render window -->
           <div class="instruction-container">
@@ -174,7 +173,7 @@
 
 <div id="pf-figures">
       <div >
-      <h5 class="list-head">Steps Before:</h5>
+      <h5 class="list-head">Previous:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in preceding_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">
@@ -184,7 +183,7 @@
       </ul>
       </div>
       <div >
-      <h5 class="list-head">Steps After:</h5>
+      <h5 class="list-head">Next:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in following_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">
