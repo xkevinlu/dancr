@@ -140,30 +140,38 @@ const app = new Vue({
         // const all_foot = [app.ml, app.mr, app.ll, app.lr];
 
         app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ml[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
 
         app.mr = this.current_figure.data[app.step].mr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.mr[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
         app.ll = this.current_figure.data[app.step].ll.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ll[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
         app.lr = this.current_figure.data[app.step].lr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.lr[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
@@ -277,11 +285,14 @@ const app = new Vue({
       if (this.current_figure.data[app.step].type == 'percent') {
         foot.style.left = `${data[0]}%`;
         foot.style.top = `${data[1]}%`;
+        foot.style.transform = `rotate(${data[2]})`;
+      } else if (this.current_figure.data[app.step].type == 'translate') {
+        foot.style.transform = `translate(${data[0]}px, ${data[1]}px) rotate(${data[2]}deg)`;
       } else { // MOVE FOOT BY POSITION VALUE
         foot.style.left = `${data[0]}px`;
         foot.style.top = `${data[1]}px`;
+        foot.style.transform = `rotate(${data[2]}deg)`;
       } // ROTATE AND OPACITY
-      foot.style.transform = `rotate(${data[2]}deg)`;
       foot.style.opacity = `${data[3]}`;
       // SHOW FOOTWORK
       if ((data[6] != undefined) &&
@@ -302,33 +313,33 @@ const app = new Vue({
       await this.wait(1000);
       switch (footwork) {
         case 'HT':
-          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(500);
-          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(50);
           heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           await this.wait(1000);
           toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           break;
         case 'TH':
-          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(500);
-          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(50);
           toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           await this.wait(1000);
           heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           break;
         case 'T&H':
-          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(500);
-          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(1000);
           toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           break;
         case 'T':
-          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#730038';
           await this.wait(1500);
           toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
           break;
