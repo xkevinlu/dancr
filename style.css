@@ -209,6 +209,10 @@ html, body {
   padding:1em 0em;
 }
 
+/* #timing {
+  font-weight:700;
+} */
+
 #view-btn-group {
 width:100%;
 text-align:center;

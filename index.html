@@ -159,7 +159,7 @@
           <div class="instruction-container">
           <span class="instruction" v-show="!follow_active"> {{instruction_lead}} </span>
           <span class="instruction" v-show="!lead_active"> {{instruction_follow}} </span>
-          <span class="instruction" v-show="lead_active && follow_active"> {{instruction_both}} </span>
+          <span class="instruction" id="timing" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
         <div class="next-prev">
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
