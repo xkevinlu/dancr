@@ -17,7 +17,6 @@ const natural_turn_data = [
     ll: [65, 85, -45, 0.2, 'top', 'all 1.5s ease-in', ''],
     lr: [85, 65, -45, 1, 'top', 'all 1.5s ease-in', ''],
 =======
-=======
 >>>>>>> parent of 0677e4f... footwork and timing
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
@@ -28,11 +27,13 @@ const natural_turn_data = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> parent of 0677e4f... footwork and timing
-=======
->>>>>>> parent of 0677e4f... footwork and timing
   },
   {
     type: 'translate',
+=======
+  },
+  {
+>>>>>>> parent of 0677e4f... footwork and timing
 =======
   },
   {
@@ -49,7 +50,6 @@ const natural_turn_data = [
     mr: [50, 50, 0, 0.8, 'top', 'all 1.2s ease-in', 'HT'],
     ll: [30, 45, 0, 0.8, 'top', 'all 1.2s ease-in', 'TH'],
     lr: [0, 0, 0, -0.8, 'top', 'all 1.2s ease-in', ''],
-=======
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
 =======
