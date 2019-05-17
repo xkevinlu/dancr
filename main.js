@@ -117,7 +117,7 @@ const app = new Vue({
       this.playing = true;
       while (this.step < this.step_total-1 && this.playing == true) {
         this.next();
-        await this.wait(1500);
+        await this.wait(3000);
       }
       playing = false;
     },
@@ -128,16 +128,10 @@ const app = new Vue({
       if (app.step < app.step_total-1) {
         app.step += 1;
 
-        // if (this.playing == true) {
-        //   app.instruction_both = (app.step < app.step_total-2) ?
-        //   this.current_figure.data[app.step].text[0] :
-        //   this.current_figure.data[app.step].text[0];
-        // } else {
-          app.instruction_both = this.current_figure.data[app.step].text[0];
-        // }
+        app.instruction_both = this.current_figure.data[app.step].text[0];
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
-        // const all_foot = [app.ml, app.mr, app.ll, app.lr];
+        // const all_feet = [app.ml, app.mr, app.ll, app.lr];
 
         app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
           if (idx < 2 ) {
@@ -177,7 +171,7 @@ const app = new Vue({
           }
         });
 
-        this.update_foot_position();
+        this.update_feet_position();
       }
     },
     prev: function() {
@@ -229,7 +223,7 @@ const app = new Vue({
         mrSvg.style.transition = 'all 2s';
         llSvg.style.transition = 'all 2s';
         lrSvg.style.transition = 'all 2s';
-        this.update_foot_position();
+        this.update_feet_position();
         this.rewinding = false;
       }
     },
@@ -250,7 +244,7 @@ const app = new Vue({
       mrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
       llSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
       lrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
-      this.update_foot_position();
+      this.update_feet_position();
       this.replaying = false;
     },
     lead: function() {
@@ -265,24 +259,23 @@ const app = new Vue({
       app.lead_active = true;
       app.follow_active = true;
     },
-    moveFoot: async function(foot, data) {
-      // TRANSFORM ORIGIN SET
+    moveFoot: function(feet, data) {
       if (data[4] != undefined ) {
-        foot.style.transformOrigin = data[4];
+        feet.style.transformOrigin = data[4];
       } else {
-        foot.style.transformOrigin = 'center';
+        feet.style.transformOrigin = 'center';
       }
       console.log(data);
       // TRANSITION, if specified use it going forward, and condition for replay
-      if ((data[5] != undefined) &&
-          (this.rewinding == false) &&
-          (this.replaying == false)) {
-        foot.style.transition = data[5];
+      if ((data[5] != undefined) && (this.rewinding == false) && (this.replaying == false) ) {
+        feet.style.transition = data[5];
+      } else if (this.replaying == true) {
+        feet.style.transition = 'all 2s';
       } else {
-        foot.style.transition = 'all 2s';
+        feet.style.transition = 'all 2s';
       }
-      // MOVE FOOT BY PERCENT
       if (this.current_figure.data[app.step].type == 'percent') {
+<<<<<<< HEAD
         foot.style.left = `${data[0]}%`;
         foot.style.top = `${data[1]}%`;
         foot.style.transform = `rotate(${data[2]})`;
@@ -299,14 +292,24 @@ const app = new Vue({
           (this.rewinding == false) &&
           (this.replaying == false)) {
         this.show_footwork(foot, data[6]);
+=======
+        feet.style.left = `${data[0]}%`;
+        feet.style.top = `${data[1]}%`;
+      } else {
+        feet.style.left = `${data[0]}px`;
+        feet.style.top = `${data[1]}px`;
+>>>>>>> parent of 0677e4f... footwork and timing
       }
+      feet.style.transform = `rotate(${data[2]}deg)`;
+      feet.style.opacity = `${data[3]}`;
     },
-    update_foot_position: function() {
+    update_feet_position: function() {
       app.moveFoot(mlSvg, app.ml);
       app.moveFoot(mrSvg, app.mr);
       app.moveFoot(llSvg, app.ll);
       app.moveFoot(lrSvg, app.lr);
     },
+<<<<<<< HEAD
     show_footwork: async function(foot, footwork) {
       const heel = foot.children[0].children[0].children[1];
       const toe = foot.children[0].children[0].children[0];
@@ -345,6 +348,8 @@ const app = new Vue({
           break;
       }
     },
+=======
+>>>>>>> parent of 0677e4f... footwork and timing
     set_foot_width: function(px) {
       mlSvg.style.width = px + 'px';
       mrSvg.style.width = px + 'px';
