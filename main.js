@@ -134,30 +134,38 @@ const app = new Vue({
         // const all_feet = [app.ml, app.mr, app.ll, app.lr];
 
         app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ml[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
 
         app.mr = this.current_figure.data[app.step].mr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.mr[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
         app.ll = this.current_figure.data[app.step].ll.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ll[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
         });
         app.lr = this.current_figure.data[app.step].lr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.lr[idx];
+          if (idx < 2 ) {
+            return (this.current_figure.data[app.step].type == 'translate') ? value : value + app.ml[idx];
+          } else if (1 < idx < 4) {
+            return value + app.ml[idx];
           } else {
             return value;
           }
