@@ -5,6 +5,7 @@ const natural_turn_data = [
       'Begin with weight on left foot',
       'Begin with weight on right foot',
     ],
+<<<<<<< HEAD
     // ml: [0, 0, 0, 1, 'top', 'all 1.5s ease-in', ''],
     // mr: [0, 0, 0, 0.2, 'top', 'all 1.5s ease-in', ''],
     // ll: [0, 0, 0, 0.2, 'top', 'all 1.5s ease-in', ''],
@@ -15,6 +16,12 @@ const natural_turn_data = [
     lr: [85, 65, -45, 1, 'top', 'all 1.5s ease-in', ''],
   },
   {
+=======
+    ml: [75, 10, 135, 1],
+    mr: [55, 30, 135, 0.2],
+    ll: [85, 75, -45, 0.2],
+    lr: [105, 55, -45, 1],
+>>>>>>> parent of 0677e4f... footwork and timing
   },
   {
     text: [
@@ -22,10 +29,17 @@ const natural_turn_data = [
       '1. RF fwd (HT),  commence to rise end of 1',
       '1. LF back (TH),  commence to rise end of 1 , NFR',
     ],
+<<<<<<< HEAD
     ml: [00, 0, 0, -0.8, 'top', 'all 1.2s ease-in', ''],
     mr: [50, 50, 0, 0.8, 'top', 'all 1.2s ease-in', 'HT'],
     ll: [30, 45, 0, 0.8, 'top', 'all 1.2s ease-in', 'TH'],
     lr: [0, 0, 0, -0.8, 'top', 'all 1.2s ease-in', ''],
+=======
+    ml: [0, 0, 0, -0.8],
+    mr: [50, 50, 0, 0.8],
+    ll: [30, 45, 0, 0.8],
+    lr: [0, 0, 0, -0.8],
+>>>>>>> parent of 0677e4f... footwork and timing
   },
   {
     text: [
@@ -33,10 +47,17 @@ const natural_turn_data = [
       '2. LF to side (T),  cont. to rise',
       '2. RF to side (T),  cont. to rise',
     ],
+<<<<<<< HEAD
     ml: [145, 130, 90, 0.8, 'top', 'all 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53)', 'T'],
     mr: [0, 0, 90, -0.8, 'top', 'all 1.2s ease, transform 0.7s 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)'],
     ll: [0, 0, 0, -0.8],
     lr: [70, 120, 135, 0.8, 'top', 'all 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53)', 'T'],
+=======
+    ml: [155, 170, 90, 0.8],
+    mr: [25, 0, 90, -0.8],
+    ll: [0, 0, 0, -0.8],
+    lr: [70, 120, 135, 0.8],
+>>>>>>> parent of 0677e4f... footwork and timing
   },
   {
     text: [
