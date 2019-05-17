@@ -117,7 +117,7 @@ const app = new Vue({
       this.playing = true;
       while (this.step < this.step_total-1 && this.playing == true) {
         this.next();
-        await this.wait(3000);
+        await this.wait(1500);
       }
       playing = false;
     },
@@ -128,10 +128,16 @@ const app = new Vue({
       if (app.step < app.step_total-1) {
         app.step += 1;
 
-        app.instruction_both = this.current_figure.data[app.step].text[0];
+        // if (this.playing == true) {
+        //   app.instruction_both = (app.step < app.step_total-2) ?
+        //   this.current_figure.data[app.step].text[0] :
+        //   this.current_figure.data[app.step].text[0];
+        // } else {
+          app.instruction_both = this.current_figure.data[app.step].text[0];
+        // }
         app.instruction_lead = this.current_figure.data[app.step].text[1];
         app.instruction_follow = this.current_figure.data[app.step].text[2];
-        // const all_feet = [app.ml, app.mr, app.ll, app.lr];
+        // const all_foot = [app.ml, app.mr, app.ll, app.lr];
 
         app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
           if (idx < 4) {
@@ -163,7 +169,7 @@ const app = new Vue({
           }
         });
 
-        this.update_feet_position();
+        this.update_foot_position();
       }
     },
     prev: function() {
@@ -215,7 +221,7 @@ const app = new Vue({
         mrSvg.style.transition = 'all 2s';
         llSvg.style.transition = 'all 2s';
         lrSvg.style.transition = 'all 2s';
-        this.update_feet_position();
+        this.update_foot_position();
         this.rewinding = false;
       }
     },
@@ -236,7 +242,7 @@ const app = new Vue({
       mrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
       llSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
       lrSvg.style.transition = 'left 2s, top 2s, opacity 2s, transform 0s';
-      this.update_feet_position();
+      this.update_foot_position();
       this.replaying = false;
     },
     lead: function() {
@@ -251,36 +257,82 @@ const app = new Vue({
       app.lead_active = true;
       app.follow_active = true;
     },
-    moveFoot: function(feet, data) {
+    moveFoot: async function(foot, data) {
+      // TRANSFORM ORIGIN SET
       if (data[4] != undefined ) {
-        feet.style.transformOrigin = data[4];
+        foot.style.transformOrigin = data[4];
       } else {
-        feet.style.transformOrigin = 'center';
+        foot.style.transformOrigin = 'center';
       }
       console.log(data);
       // TRANSITION, if specified use it going forward, and condition for replay
-      if ((data[5] != undefined) && (this.rewinding == false) && (this.replaying == false) ) {
-        feet.style.transition = data[5];
-      } else if (this.replaying == true) {
-        feet.style.transition = 'all 2s';
+      if ((data[5] != undefined) &&
+          (this.rewinding == false) &&
+          (this.replaying == false)) {
+        foot.style.transition = data[5];
       } else {
-        feet.style.transition = 'all 2s';
+        foot.style.transition = 'all 2s';
       }
+      // MOVE FOOT BY PERCENT
       if (this.current_figure.data[app.step].type == 'percent') {
-        feet.style.left = `${data[0]}%`;
-        feet.style.top = `${data[1]}%`;
-      } else {
-        feet.style.left = `${data[0]}px`;
-        feet.style.top = `${data[1]}px`;
+        foot.style.left = `${data[0]}%`;
+        foot.style.top = `${data[1]}%`;
+      } else { // MOVE FOOT BY POSITION VALUE
+        foot.style.left = `${data[0]}px`;
+        foot.style.top = `${data[1]}px`;
+      } // ROTATE AND OPACITY
+      foot.style.transform = `rotate(${data[2]}deg)`;
+      foot.style.opacity = `${data[3]}`;
+      // SHOW FOOTWORK
+      if ((data[6] != undefined) &&
+          (this.rewinding == false) &&
+          (this.replaying == false)) {
+        this.show_footwork(foot, data[6]);
       }
-      feet.style.transform = `rotate(${data[2]}deg)`;
-      feet.style.opacity = `${data[3]}`;
     },
-    update_feet_position: function() {
+    update_foot_position: function() {
       app.moveFoot(mlSvg, app.ml);
       app.moveFoot(mrSvg, app.mr);
       app.moveFoot(llSvg, app.ll);
       app.moveFoot(lrSvg, app.lr);
+    },
+    show_footwork: async function(foot, footwork) {
+      const heel = foot.children[0].children[0].children[1];
+      const toe = foot.children[0].children[0].children[0];
+      await this.wait(1000);
+      switch (footwork) {
+        case 'HT':
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(500);
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(50);
+          heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          await this.wait(1000);
+          toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          break;
+        case 'TH':
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(500);
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(50);
+          toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          await this.wait(1000);
+          heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          break;
+        case 'T&H':
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(500);
+          heel.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(1000);
+          toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          heel.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          break;
+        case 'T':
+          toe.style.fill = foot.classList.contains('M') ? '#003C78':'#E10071';
+          await this.wait(1500);
+          toe.style.fill = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+          break;
+      }
     },
     set_foot_width: function(px) {
       mlSvg.style.width = px + 'px';

@@ -219,7 +219,7 @@ html, body {
 }
 
 .instruction {
-  font-size:1.1em;
+  font-size:1em;
   font-weight:300;
   width:100%;
   padding:1em 0em;
@@ -288,6 +288,14 @@ margin-top:0.5em;
   left:90px;
   top:0px;
   opacity:0.3;
+}
+
+.mFootworkOn {
+  fill: #003C78;
+}
+
+.lFootworkOn {
+  fill: #E10071;
 }
 
 #pf-figures {
