@@ -276,6 +276,7 @@ const app = new Vue({
       }
       if (this.current_figure.data[app.step].type == 'percent') {
 <<<<<<< HEAD
+<<<<<<< HEAD
         foot.style.left = `${data[0]}%`;
         foot.style.top = `${data[1]}%`;
         foot.style.transform = `rotate(${data[2]})`;
@@ -293,11 +294,16 @@ const app = new Vue({
           (this.replaying == false)) {
         this.show_footwork(foot, data[6]);
 =======
+=======
+>>>>>>> parent of 0677e4f... footwork and timing
         feet.style.left = `${data[0]}%`;
         feet.style.top = `${data[1]}%`;
       } else {
         feet.style.left = `${data[0]}px`;
         feet.style.top = `${data[1]}px`;
+<<<<<<< HEAD
+>>>>>>> parent of 0677e4f... footwork and timing
+=======
 >>>>>>> parent of 0677e4f... footwork and timing
       }
       feet.style.transform = `rotate(${data[2]}deg)`;
@@ -309,6 +315,7 @@ const app = new Vue({
       app.moveFoot(llSvg, app.ll);
       app.moveFoot(lrSvg, app.lr);
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
     show_footwork: async function(foot, footwork) {
       const heel = foot.children[0].children[0].children[1];
@@ -348,6 +355,8 @@ const app = new Vue({
           break;
       }
     },
+=======
+>>>>>>> parent of 0677e4f... footwork and timing
 =======
 >>>>>>> parent of 0677e4f... footwork and timing
     set_foot_width: function(px) {
