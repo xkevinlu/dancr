@@ -97,12 +97,14 @@ const app = new Vue({
           break;
       }
     },
-    change_figure: function(newFigure) {
+    change_figure: async function(newFigure) {
       this.current_figure = newFigure;
       this.step_total = newFigure.data.length;
       this.preceding_figures = newFigure.preceding_figures;
       this.following_figures = newFigure.following_figures;
       this.replay();
+      // await this.wait(2000);
+      // this.play();
     },
     play: async function() {
       this.playing = true;
@@ -144,7 +146,7 @@ const app = new Vue({
       if (app.step > 0) {
         this.playing = false;
         this.rewinding = true;
-        const newData = this.current_figure.data[app.step];
+        let newData = this.current_figure.data[app.step];
 
         app.ml = newData.ml.map((value, idx) => {
           return (idx < 4) ? app.ml[idx] - value: value;
@@ -160,6 +162,7 @@ const app = new Vue({
         });
 
         app.step -= 1;
+        newData = this.current_figure.data[app.step];
         app.instruction_both = newData.text[0];
         app.instruction_lead = newData.text[1];
         app.instruction_follow = newData.text[2];
@@ -182,6 +185,7 @@ const app = new Vue({
       app.mr = newData.mr;
       app.ll = newData.ll;
       app.lr = newData.lr;
+
       this.update_foot_position();
       this.replaying = false;
     },
@@ -198,7 +202,7 @@ const app = new Vue({
       app.follow_active = true;
     },
     moveFoot: function(foot, data) {
-      const hasTransition = ((data[5] != undefined) && (this.rewinding == false) && (this.replaying == false));
+      const hasTransition = ((data[5] != undefined) && (this.replaying == false));
       const isPercent = (this.current_figure.data[app.step].type == 'percent');
 
       foot.style.left = isPercent ? `${data[0]}%` : `${data[0]}px`;
@@ -206,7 +210,7 @@ const app = new Vue({
       foot.style.transform = `rotate(${data[2]}deg)`;
       foot.style.opacity = `${data[3]}`;
       foot.style.transformOrigin = (data[4] != undefined ) ? data[4] : 'center';
-      foot.style.transition = hasTransition ? data[5] : 'all 2s';
+      foot.style.transition = this.replaying ? 'all 0s': hasTransition ? data[5] : 'all 2s';
 
       // SHOW FOOTWORK
       if ((data[6] != undefined) &&

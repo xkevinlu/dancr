@@ -1,10 +1,12 @@
 class Figure {
-    constructor(name, dance, level, style, data) {
+    constructor(name, dance, level, style, data, startFoot,endFoot) {
         this.name = name;
         this.dance = dance;
         this.level = level;
         this.style = style;
         this.data = data;
+        this.startFoot = startFoot;
+        this.endFoot = endFoot;
     }
 }
 

@@ -44,8 +44,8 @@ const natural_turn_data = [
       '3. RF closes to LF (T),  cont. to rise',
       '3. LF closes to RF (T),  cont. to rise',
     ],
-    ml: [0, 15, 45, -0.8],
-    mr: [112, 55, 45, 0.8, 'center', 'all 2s ease', 'T&H'],
+    ml: [0, 15, 45, -0.8, 'center', 'all 1.5s'],
+    mr: [92, 75, 45, 0.8, 'top', 'all 2s ease', 'T&H'],
     ll: [60, 35, 135, 0.8, 'center', 'all 2s ease', 'T&H'],
     lr: [0, 0, 0, -0.8],
   },
@@ -488,10 +488,10 @@ const closedImpetusData = [
       'Begin with weight on right foot',
       'Begin with weight on left foot',
     ],
-    ml: [36, 36, -90, 0.2, 'bottom', 'all 2s'],
-    mr: [25, 40, -90, 1, 'top', 'all 2s'],
-    ll: [20, 36, 90, 1, 'top', 'all 2s'],
-    lr: [20, 44, 90, 0.2, 'top', 'all 2s'],
+    ml: [36, 36, -90, 0.2, 'bottom', 'all 1.5s'],
+    mr: [25, 40, -90, 1, 'top', 'all 1.5s'],
+    ll: [20, 36, 90, 1, 'top', 'all 1.5s'],
+    lr: [20, 44, 90, 0.2, 'top', 'all 1.5s'],
   },
   {
     type: 'percent',
@@ -500,10 +500,10 @@ const closedImpetusData = [
       '1. LF back (TH)',
       '1. RF fwd (HT)',
     ],
-    ml: [15, 15, 45, 0.8, 'bottom', 'all 2s'],
-    mr: [0, 0, 0, -0.8, 'top', 'all 2s'],
-    ll: [0, 0, 0, -0.8, 'top', 'all 2s'],
-    lr: [22, 4, 0, 0.8, 'top', 'all 2s'],
+    ml: [15, 15, 45, 0.8, 'bottom', 'all 1.5s'],
+    mr: [0, 0, 0, -0.8, 'top', 'all 1.5s'],
+    ll: [0, 0, 0, -0.8, 'top', 'all 1.5s'],
+    lr: [22, 4, 0, 0.8, 'top', 'all 1.5s'],
   },
   {
     type: 'percent',
@@ -512,10 +512,10 @@ const closedImpetusData = [
       '2. RF closes to LF (Heel Turn)',
       '2. LF to side (T), then brush RF to LF',
     ],
-    ml: [0, 0, 90, -0.8, 'bottom', 'left 3s, top 3s, opacity 1.5s ease-in 1.5s, transform 2.5s 0.5s'],
-    mr: [40, 19, 135, 0.8, 'top', 'left 3s, top 2.8s 0.2s, opacity 1.5s ease-in 1.5s, transform 2.8s 0.2s'],
-    ll: [50, 25, 135, 0.8, 'top', 'all 3s'],
-    lr: [25, 10, 135, -0.8, 'top', 'all 2s 1s'],
+    ml: [0, 0, 90, -0.8, 'bottom', 'left 1.5s, top 1.5s, opacity 1.5s, transform 1.25s 0.25s'],
+    mr: [40, 19, 135, 0.8, 'top', 'left 1.5s, top 1.25s cubic-bezier(.35,-0.4,.56,1.01), opacity 1.5s, transform 1.5s'],
+    ll: [50, 25, 135, 0.8, 'top', 'all 1.5s'],
+    lr: [25, 10, 135, -0.8, 'top', 'all 1.2s 0.7s'],
   },
   {
     type: 'percent',
@@ -536,10 +536,10 @@ const closedImpetusData = [
       '3&. LF to side & slightly back',
       '3&. RF closes to LF (T),  cont. to rise',
     ],
-    ml: [0, 0, 0, 0, 'bottom'],
-    mr: [-21, -26, 0, 0, 'top'],
-    ll: [-25, -22, 0, 0, 'top'],
-    lr: [0, 0, 0, 0, 'top'],
+    ml: [0, 0, 0, 0, 'bottom', 'all 1.5s'],
+    mr: [-21, -26, 0, 0, 'top', 'all 1.5s'],
+    ll: [-25, -22, 0, 0, 'top', 'all 1.5s'],
+    lr: [0, 0, 0, 0, 'top', 'all 1.5s'],
   },
 ];
 
@@ -978,59 +978,59 @@ const backLockData = [
     count: 1,
     type: 'percent',
     text: [
-      '1. Moving together towards DW',
+      '1',
       '1. LF back in CBMP (TH)',
       '1. RF fwd in CBMP (HT)',
     ],
-    ml: [20, 10, 0, 0.8, 'top'],
+    ml: [20, 10, 0, 0.8, 'top', 'all 2s', 'TH'],
     mr: [0, 0, 0, -0.8, 'top'],
     ll: [0, 0, 0, -0.8, 'top'],
-    lr: [20, 10, 0, 0.8, 'top'],
+    lr: [20, 10, 0, 0.8, 'top', 'all 2s', 'HT'],
   },
   {
     count: 2,
     type: 'percent',
     text: [
-      '2. Moving together towards DW',
+      '2',
       '2. RF back (T)',
       '2. LF diag fwd (T)',
     ],
     ml: [0, 0, 0, -0.8, 'top'],
-    mr: [40, 25, 0, 0.8, 'top'],
-    ll: [40, 25, 0, 0.8, 'top'],
+    mr: [40, 25, 0, 0.8, 'top', 'all 2s', 'T'],
+    ll: [40, 25, 0, 0.8, 'top', 'all 2s', 'T'],
     lr: [0, 0, 0, -0.8, 'top'],
   },
   {
     count: 2.5,
     type: 'percent',
     text: [
-      '2&. Lock, moving together towards DW',
+      '2&',
       '2&. LF crosses in front of RF (T)',
       '2&. RF crosses behind LF (T)',
     ],
-    ml: [28, 4, 0, 0.8, 'top'],
+    ml: [28, 4, 0, 0.8, 'top', 'all 2s', 'T'],
     mr: [0, 0, 0, -0.8, 'top'],
     ll: [0, 0, 0, -0.8, 'top'],
-    lr: [28, 4, 0, 0.8, 'top'],
+    lr: [28, 4, 0, 0.8, 'top', 'all 2s', 'T'],
   },
   {
     count: 3,
     type: 'percent',
     text: [
-      '3. Moving together towards DW',
-      '3. RF diag back (T)',
-      '3. LF diag fwd (T)',
+      '3',
+      '3. RF diag back (TH)',
+      '3. LF diag fwd (TH)',
     ],
     ml: [0, 0, 0, -0.8, 'top'],
-    mr: [30, 0, 0, 0.8, 'top'],
-    ll: [30, 0, 0, 0.8, 'top'],
+    mr: [30, 0, 0, 0.8, 'top', 'all 2s', 'T&H'],
+    ll: [30, 0, 0, 0.8, 'top', 'all 2s', 'T&H'],
     lr: [0, 0, 0, -0.8, 'top'],
   },
   {
     count: 3.5,
     type: 'percent',
     text: [
-      '3&. Collect under body',
+      '3&',
       '3&. Collect LF to RF w/o weight',
       '3&. Collect RF to LF w/o weight',
     ],
@@ -2251,150 +2251,48 @@ const dataTemplates = [
 ];
 
 const waltz_all_figures = [
-  new Figure('Natural Turn', 'Waltz', 'Newcomer', 'Standard', natural_turn_data),
-  new Figure('Spin Turn (Underturned)', 'Waltz', 'Newcomer', 'Standard', spin_turn_data),
-  new Figure('Reverse Turn', 'Waltz', 'Newcomer', 'Standard', reverse_turn_data),
-  new Figure('RF Closed Change', 'Waltz', 'Newcomer', 'Standard', rf_closed_change_data),
-  new Figure('LF Closed Change', 'Waltz', 'Newcomer', 'Standard', lf_closed_change_data),
-  new Figure('Whisk', 'Waltz', 'Newcomer', 'Standard', whisk_data),
-  new Figure('Chasse from Promenade', 'Waltz', 'Newcomer', 'Standard', chasse_from_promenade_data),
-  new Figure('Prep Step', 'Waltz', 'Newcomer', 'Standard', prep_step_data),
+  new Figure('Natural Turn', 'Waltz', 'Newcomer', 'Standard', natural_turn_data, 'RFF', 'LFB'),
+  new Figure('Spin Turn (Underturned)', 'Waltz', 'Newcomer', 'Standard', spin_turn_data, 'LFB', 'RFB'),
+  new Figure('Reverse Turn', 'Waltz', 'Newcomer', 'Standard', reverse_turn_data, 'LFF', 'RFB'),
+  new Figure('RF Closed Change', 'Waltz', 'Newcomer', 'Standard', rf_closed_change_data, 'RFF', 'LFF'),
+  new Figure('LF Closed Change', 'Waltz', 'Newcomer', 'Standard', lf_closed_change_data, 'LFF', 'RFF'),
+  new Figure('Whisk', 'Waltz', 'Newcomer', 'Standard', whisk_data, 'LFF', 'PP'),
+  new Figure('Chasse from Promenade', 'Waltz', 'Newcomer', 'Standard', chasse_from_promenade_data, 'PP', 'RFF'),
+  new Figure('Prep Step', 'Waltz', 'Newcomer', 'Standard', prep_step_data, 'START', 'RFF'),
 
-  new Figure('Closed Impetus', 'Waltz', 'Bronze', 'Standard', closedImpetusData),
-  new Figure('Hesitation Change', 'Waltz', 'Bronze', 'Standard', hesitationChangeData),
-  new Figure('Outside Change', 'Waltz', 'Bronze', 'Standard', outsideChangeData),
-  new Figure('Reverse Corte', 'Waltz', 'Bronze', 'Standard', reverseCorteData),
-  new Figure('Back Whisk', 'Waltz', 'Bronze', 'Standard', backWhiskData),
-  new Figure('Basic Weave', 'Waltz', 'Bronze', 'Standard', basicWeaveData),
-  new Figure('Double Reverse Spin', 'Waltz', 'Bronze', 'Standard', doubleReverseData),
-  new Figure('Reverse Pivot', 'Waltz', 'Bronze', 'Standard', reversePivotData),
-  new Figure('Back Lock', 'Waltz', 'Bronze', 'Standard', backLockData),
-  new Figure('Chasse to Right', 'Waltz', 'Bronze', 'Standard', chasse_to_right_data),
+  new Figure('Closed Impetus', 'Waltz', 'Bronze', 'Standard', closedImpetusData, 'LFB', 'RFB'),
+  new Figure('Hesitation Change', 'Waltz', 'Bronze', 'Standard', hesitationChangeData, 'RFF', 'LFB'),
+  new Figure('Outside Change', 'Waltz', 'Bronze', 'Standard', outsideChangeData, 'LFB', 'RFF'),
+  new Figure('Reverse Corte', 'Waltz', 'Bronze', 'Standard', reverseCorteData, 'RFB', 'LFB'),
+  new Figure('Back Whisk', 'Waltz', 'Bronze', 'Standard', backWhiskData, 'LFB', 'PP'),
+  new Figure('Basic Weave', 'Waltz', 'Bronze', 'Standard', basicWeaveData, 'RFB', 'RFF'),
+  new Figure('Double Reverse Spin', 'Waltz', 'Bronze', 'Standard', doubleReverseData, 'LFF', 'LFF'),
+  new Figure('Reverse Pivot', 'Waltz', 'Bronze', 'Standard', reversePivotData, 'RFB', 'LFF'),
+  new Figure('Back Lock', 'Waltz', 'Bronze', 'Standard', backLockData, 'LFB', 'LFB'),
+  new Figure('Chasse to Right', 'Waltz', 'Bronze', 'Standard', chasse_to_right_data, 'LFF', 'LFB'),
 
-  new Figure('Weave from Promenade', 'Waltz', 'Silver', 'Standard', weaveFromPromenadeData),
-  new Figure('Closed Telemark', 'Waltz', 'Silver', 'Standard', closedTelemarkData),
-  new Figure('Open Telemark', 'Waltz', 'Silver', 'Standard', openTelemarkData),
-  new Figure('Open Impetus', 'Waltz', 'Silver', 'Standard', openImpetusData),
-  new Figure('Cross Hesitation', 'Silver', 'Silver', 'Standard', crossHesitationData),
-  new Figure('Wing', 'Waltz', 'Silver', 'Standard', wingData),
-  new Figure('Outside Spin', 'Waltz', 'Silver', 'Standard', outsideSpinData),
-  new Figure('Turning Lock to Left', 'Waltz', 'Silver', 'Standard', turningLocktoLeftData),
-  new Figure('Drag Hesitation', 'Waltz', 'Silver', 'Standard', dragHesitationData),
+  new Figure('Weave from Promenade', 'Waltz', 'Silver', 'Standard', weaveFromPromenadeData, 'PP', 'RFF'),
+  new Figure('Closed Telemark', 'Waltz', 'Silver', 'Standard', closedTelemarkData, 'LFF', 'RFF'),
+  new Figure('Open Telemark', 'Waltz', 'Silver', 'Standard', openTelemarkData, 'LFF', 'PP'),
+  new Figure('Open Impetus', 'Waltz', 'Silver', 'Standard', openImpetusData, 'RFB', 'PP'),
+  new Figure('Cross Hesitation', 'Silver', 'Silver', 'Standard', crossHesitationData, 'PP', 'LFB'),
+  new Figure('Wing', 'Waltz', 'Silver', 'Standard', wingData, 'PP', 'LFF'),
+  new Figure('Outside Spin', 'Waltz', 'Silver', 'Standard', outsideSpinData, 'LFB', 'RFF'),
+  new Figure('Turning Lock to Left', 'Waltz', 'Silver', 'Standard', turningLocktoLeftData, 'RFB', 'RFF'),
+  new Figure('Drag Hesitation', 'Waltz', 'Silver', 'Standard', dragHesitationData, 'LFF', 'LFB'),
 
-  new Figure('Left Whisk', 'Waltz', 'Gold', 'Standard', leftWhiskData),
-  new Figure('Contra Check', 'Waltz', 'Gold', 'Standard', contraCheckData),
-  new Figure('Closed Wing', 'Waltz', 'Gold', 'Standard', closedWingData),
-  new Figure('Turning Lock to Right', 'Waltz', 'Gold', 'Standard', turningLockToRightData),
-  new Figure('Fallaway Reverse Slip Pivot', 'Waltz', 'Gold', 'Standard', fallawaySlipPivotData),
-  new Figure('Hover Corte', 'Waltz', 'Gold', 'Standard', hoverCorteData),
-];
-
-// Natural Turn
-waltz_all_figures[0].preceding_figures= [
-  waltz_all_figures[4],
-  waltz_all_figures[0],
-  waltz_all_figures[6],
-  waltz_all_figures[10],
-  waltz_all_figures[13],
-  waltz_all_figures[18],
-  waltz_all_figures[19],
-  waltz_all_figures[24],
-  waltz_all_figures[25],
-];
-waltz_all_figures[0].following_figures= [
-  waltz_all_figures[1],
+  new Figure('Left Whisk', 'Waltz', 'Gold', 'Standard', leftWhiskData, 'RFB', 'LFB'),
+  new Figure('Contra Check', 'Waltz', 'Gold', 'Standard', contraCheckData, 'LFF', 'PP'),
+  new Figure('Closed Wing', 'Waltz', 'Gold', 'Standard', closedWingData, 'RFF', 'LFF'),
+  new Figure('Turning Lock to Right', 'Waltz', 'Gold', 'Standard', turningLockToRightData, 'RFB', 'PP'),
+  new Figure('Fallaway Reverse Slip Pivot', 'Waltz', 'Gold', 'Standard', fallawaySlipPivotData, 'LFF', 'LFF'),
+  new Figure('Hover Corte', 'Waltz', 'Gold', 'Standard', hoverCorteData, 'RFB', 'LFB'),
 ];
 
-// Spin Turn
-waltz_all_figures[1].preceding_figures= [
-  waltz_all_figures[0],
-];
-waltz_all_figures[1].following_figures= [
-  waltz_all_figures[3],
-];
+waltz_all_figures.forEach( (entry) => {
+  entry.preceding_figures = waltz_all_figures.filter(
+      (figure) => figure.endFoot == entry.startFoot);
 
-// Reverse Turn
-waltz_all_figures[2].preceding_figures= [
-  waltz_all_figures[3],
-];
-waltz_all_figures[2].following_figures= [
-  waltz_all_figures[0],
-];
-
-// RF Close Change
-waltz_all_figures[3].preceding_figures= [
-  waltz_all_figures[0],
-];
-waltz_all_figures[3].following_figures= [
-  waltz_all_figures[2],
-  waltz_all_figures[5],
-  waltz_all_figures[12],
-  waltz_all_figures[14],
-  waltz_all_figures[17],
-  waltz_all_figures[19],
-  waltz_all_figures[20],
-  waltz_all_figures[26],
-  waltz_all_figures[31],
-  waltz_all_figures[28],
-];
-
-// LF Close Change
-waltz_all_figures[4].preceding_figures= [
-  waltz_all_figures[2],
-  waltz_all_figures[14],
-  waltz_all_figures[9],
-  waltz_all_figures[15],
-  waltz_all_figures[23],
-  waltz_all_figures[29],
-  waltz_all_figures[31],
-];
-waltz_all_figures[4].following_figures= [
-  waltz_all_figures[0],
-  waltz_all_figures[9],
-];
-
-// Whisk
-waltz_all_figures[5].preceding_figures= [
-  waltz_all_figures[2],
-  waltz_all_figures[9],
-  waltz_all_figures[14],
-  waltz_all_figures[15],
-  waltz_all_figures[23],
-  waltz_all_figures[29],
-  waltz_all_figures[31],
-];
-waltz_all_figures[5].following_figures= [
-  waltz_all_figures[6],
-  waltz_all_figures[18],
-  waltz_all_figures[22],
-  waltz_all_figures[23],
-  waltz_all_figures[27],
-];
-
-// Chasse from PP
-waltz_all_figures[6].preceding_figures= [
-  waltz_all_figures[5],
-  waltz_all_figures[10],
-  waltz_all_figures[12],
-  waltz_all_figures[13],
-  waltz_all_figures[18],
-  waltz_all_figures[20],
-  waltz_all_figures[21],
-  waltz_all_figures[25],
-  waltz_all_figures[28],
-  waltz_all_figures[30],
-];
-
-waltz_all_figures[6].following_figures= [
-  waltz_all_figures[13],
-  waltz_all_figures[29],
-  waltz_all_figures[0],
-  waltz_all_figures[9],
-];
-
-// Prep Step
-waltz_all_figures[7].preceding_figures= [
-];
-waltz_all_figures[7].following_figures= [
-  waltz_all_figures[0],
-];
+  entry.following_figures = waltz_all_figures.filter(
+      (figure) => figure.startFoot == entry.endFoot);
+});
