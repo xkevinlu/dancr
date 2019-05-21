@@ -161,6 +161,10 @@ html, body {
   align-items:center;
 }
 
+.transition1s {
+  transition: all 1s;
+}
+
 #graphic-container {
   width:100%;
   padding:0em 0em;
@@ -194,6 +198,7 @@ html, body {
   flex: 0 0 auto;
   /* background-color: #FFFFFF; */
   /* border:1px solid #EBEBEB;; */
+  transition: transform 0.2s;
 }
 @media screen and (min-width: 640px) {
   #graphic-container {
@@ -227,8 +232,17 @@ html, body {
   margin-top:0.5em;
 }
 
-#more-controls {
-  padding-left:20px;
+#camera-controls {
+  margin-top:8px;
+  padding:4px 0px;
+  background-color:#F8F8F8;
+}
+
+.gearTransition {
+  transition:transform 0.5s;
+}
+.gearTurn {
+  transform:rotate(45deg);
 }
 
 .next-prev {
@@ -253,10 +267,13 @@ html, body {
   display:flex;
   align-items:center;
   justify-content:center;
-  position:absolute;
+  /* position:absolute;
   bottom:88px;
-  right:16px;
+  right:16px; */
   opacity:0.4;
+  padding-left:16px;
+  padding-right:0px;
+  margin-right:-4px;
 }
 
 #LOD i {

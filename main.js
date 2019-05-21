@@ -29,6 +29,7 @@ const app = new Vue({
     LODToggle: true,
     LODFacing: 0, // 0 is facing right
     scale: 100,
+    moreControls:true,
   },
   computed: {
     LODStyle: function() {
@@ -239,39 +240,53 @@ const app = new Vue({
     show_footwork: async function(foot, footwork) {
       const heel = foot.children[0].children[0].children[1];
       const toe = foot.children[0].children[0].children[0];
-      const isMale = foot.classList.contains('M');
+      const accentColor = foot.classList.contains('M') ? '#003C78':'#E10071';
+      const normalColor = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
       await this.wait(1000);
       switch (footwork) {
         case 'HT':
-          heel.style.fill = isMale ? '#003C78':'#E10071';
+          heel.style.fill = accentColor;
           await this.wait(500);
-          toe.style.fill = isMale ? '#003C78':'#E10071';
+          toe.style.fill = accentColor;
           await this.wait(50);
-          heel.style.fill = isMale ? '#069FE6':'#FF51A6';
+          heel.style.fill = normalColor;
           await this.wait(1000);
-          toe.style.fill = isMale ? '#069FE6':'#FF51A6';
+          toe.style.fill = normalColor;
           break;
         case 'TH':
-          toe.style.fill = isMale ? '#003C78':'#E10071';
+          toe.style.fill = accentColor;
           await this.wait(500);
-          heel.style.fill = isMale ? '#003C78':'#E10071';
+          heel.style.fill = accentColor;
           await this.wait(50);
-          toe.style.fill = isMale ? '#069FE6':'#FF51A6';
+          toe.style.fill = normalColor;
           await this.wait(1000);
-          heel.style.fill = isMale ? '#069FE6':'#FF51A6';
+          heel.style.fill = normalColor;
           break;
         case 'T&H':
-          toe.style.fill = isMale ? '#003C78':'#E10071';
+          toe.style.fill = accentColor;
           await this.wait(500);
-          heel.style.fill = isMale ? '#003C78':'#E10071';
+          heel.style.fill = accentColor;
           await this.wait(1000);
-          toe.style.fill = isMale ? '#069FE6':'#FF51A6';
-          heel.style.fill = isMale ? '#069FE6':'#FF51A6';
+          toe.style.fill = normalColor;
+          heel.style.fill = normalColor;
           break;
         case 'T':
-          toe.style.fill = isMale ? '#003C78':'#E10071';
+          toe.style.fill = accentColor;
           await this.wait(1500);
-          toe.style.fill = isMale ? '#069FE6':'#FF51A6';
+          toe.style.fill = normalColor;
+          break;
+        case 'THT':
+          toe.style.fill = accentColor;
+          await this.wait(300);
+          heel.style.fill = accentColor;
+          await this.wait(50);
+          toe.style.fill = normalColor;
+          await this.wait(300);
+          heel.style.fill = normalColor;
+          await this.wait(50);
+          toe.style.fill = accentColor;
+          await this.wait(800);
+          toe.style.fill = normalColor;
           break;
       }
     },

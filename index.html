@@ -90,22 +90,27 @@
               wc
               </i>
             </button>
-            <button id="accbtn" class="no-padding mdl-button mdl-js-button">
-              <i class="material-icons">settings</i>
+            <button class="no-padding mdl-button mdl-js-button" @click="moreControls = !moreControls">
+              <i class="material-icons gearTransition" :class="{'gearTurn': moreControls }">settings</i>
             </button>
 
-
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+            <!-- <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
               <li class="mdl-menu__item">Show LOD
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
                   <input type="checkbox" id="switch-1" class="mdl-switch__input" v-model="LODToggle" checked>
                   <span class="mdl-switch__label"></span>
                 </label>
               </li>
-            </ul>
+            </ul> -->
           </div>
 
-          <div id="camera-controls" class='d-flex-center'>
+          <div id="camera-controls" class='d-flex-center' v-if="moreControls">
+            <div id="LOD" v-if="LODToggle">
+              <p>LOD</p>
+              <i class="material-icons transition1s" :style="LODStyle">
+              arrow_right_alt
+              </i>
+            </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect" @click="LODFacing -= 45">
               <i class="material-icons">
                 rotate_left
@@ -119,23 +124,8 @@
             <div class="d-flex-center">
               <span>Zoom</span>
             <input class="mdl-slider mdl-js-slider" type="range"
-              min="20" max="200" value="100" tabindex="20" v-model="scale">
+              min="40" max="160" value="100" tabindex="20" v-model="scale">
             </div>
-          </div>
-
-          <div id="LOD" v-if="LODToggle">
-            <p>LOD</p>
-            <i class="material-icons" :style="LODStyle">
-            arrow_right_alt
-            </i>
-            <!-- <svg viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="LOD-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
-                <path id="Line" d="M156,30.5 L107,30.5 L107,24.5 L156,24.5 L156,10.5 L190,27.5 L156,44.5 L156,30.5 Z" fill="#000000" fill-rule="nonzero"></path>
-                <text id="LOD" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="45" font-weight="400" fill="#000000">
-                  <tspan x="0.24" y="44">LOD</tspan>
-                </text>
-              </g>
-            </svg> -->
           </div>
         <div id="scroll">
         <div id="diagram" :style="DiagramStyle">
