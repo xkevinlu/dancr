@@ -26,6 +26,17 @@ const app = new Vue({
     playing: false,
     rewinding: false,
     replaying: false,
+    LODToggle: true,
+    LODFacing: 0, // 0 is facing right
+    scale: 100,
+  },
+  computed: {
+    LODStyle: function() {
+      return {transform: `rotate(${this.LODFacing}deg)`};
+    },
+    DiagramStyle: function() {
+      return {transform: `rotate(${this.LODFacing}deg) scale(${this.scale / 100})`};
+    },
   },
   methods: {
     change_dance: function(dance) {
@@ -263,6 +274,9 @@ const app = new Vue({
           toe.style.fill = isMale ? '#069FE6':'#FF51A6';
           break;
       }
+    },
+    LODRotateLeft: function() {
+      this.LODFacing -= 45;
     },
   },
 });

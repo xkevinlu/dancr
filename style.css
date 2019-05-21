@@ -125,6 +125,10 @@ html, body {
   padding-top:1em;
 }
 
+.pl-1 {
+  padding-left:1em;
+}
+
 .bold {
   font-weight:700;
 }
@@ -167,7 +171,8 @@ html, body {
   background-color: #FFFFFF;
   border:1px solid grey;
   border-radius:8px;
-  max-width:360px;
+  width:100%;
+  max-width:400px;
   position:relative;
   margin:auto;
 }
@@ -213,10 +218,17 @@ html, body {
   font-weight:700;
 } */
 
-#view-btn-group {
-width:100%;
-text-align:center;
-margin-top:0.5em;
+#top-controls {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  /* text-align:center; */
+  margin-top:0.5em;
+}
+
+#more-controls {
+  padding-left:20px;
 }
 
 .next-prev {
@@ -237,11 +249,22 @@ margin-top:0.5em;
   font-weight:300;
 }
 
-.LOD {
-  width: 80px;
+#LOD {
+  display:flex;
+  align-items:center;
+  justify-content:center;
   position:absolute;
-  right:12px;
-  top:50%;
+  bottom:88px;
+  right:16px;
+  opacity:0.4;
+}
+
+#LOD i {
+  font-size:2em;
+}
+
+#LOD p {
+  height:8px;
 }
 
 .M {

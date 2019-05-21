@@ -78,7 +78,7 @@
         </div>
         <div id="render_window">
 
-          <div id="view-btn-group">
+          <div id="top-controls">
             <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'male-color': !follow_active }" id="btn-lead" v-on:click="lead()">
               <i class="fas fa-male gender-icons"></i>
             </button>
@@ -90,20 +90,55 @@
               wc
               </i>
             </button>
+            <button id="accbtn" class="no-padding mdl-button mdl-js-button">
+              <i class="material-icons">settings</i>
+            </button>
+
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">Show LOD
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                  <input type="checkbox" id="switch-1" class="mdl-switch__input" v-model="LODToggle" checked>
+                  <span class="mdl-switch__label"></span>
+                </label>
+              </li>
+            </ul>
           </div>
 
-          <!-- <div class="LOD">
-            <svg viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <div id="camera-controls" class='d-flex-center'>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" @click="LODFacing -= 45">
+              <i class="material-icons">
+                rotate_left
+              </i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" @click="LODFacing += 45">
+              <i class="material-icons">
+                rotate_right
+              </i>
+            </button>
+            <div class="d-flex-center">
+              <span>Zoom</span>
+            <input class="mdl-slider mdl-js-slider" type="range"
+              min="20" max="200" value="100" tabindex="20" v-model="scale">
+            </div>
+          </div>
+
+          <div id="LOD" v-if="LODToggle">
+            <p>LOD</p>
+            <i class="material-icons" :style="LODStyle">
+            arrow_right_alt
+            </i>
+            <!-- <svg viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="LOD-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
                 <path id="Line" d="M156,30.5 L107,30.5 L107,24.5 L156,24.5 L156,10.5 L190,27.5 L156,44.5 L156,30.5 Z" fill="#000000" fill-rule="nonzero"></path>
                 <text id="LOD" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="45" font-weight="400" fill="#000000">
                   <tspan x="0.24" y="44">LOD</tspan>
                 </text>
               </g>
-            </svg>
-          </div> -->
+            </svg> -->
+          </div>
         <div id="scroll">
-        <div id="diagram">
+        <div id="diagram" :style="DiagramStyle">
           <div class="M" id="ML" v-show="lead_active">
             <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="ML-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -162,7 +197,7 @@
           <span class="instruction" id="timing" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
         <div class="next-prev">
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">skip_previous</i></button>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
