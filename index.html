@@ -104,8 +104,8 @@
             </ul> -->
           </div>
 
-          <div id="camera-controls" class='d-flex-center' v-if="moreControls">
-            <div id="LOD" v-if="LODToggle">
+          <div id="camera-controls" class='d-flex-center' v-show="moreControls">
+            <div id="LOD" v-show="LODToggle">
               <p>LOD</p>
               <i class="material-icons transition1s" :style="LODStyle">
               arrow_right_alt
