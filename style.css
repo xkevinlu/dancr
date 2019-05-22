@@ -1,28 +1,48 @@
-/**
- * Copyright 2015 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
- .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
    padding-right: 0;
  }
+
+ .mdl-layout {
+    overflow: visible;
+}
+.mdl-layout__drawer {
+    position: fixed;
+}
+.mdl-layout__content {
+    display: block;
+    overflow: visible;
+    margin-top: 64px;
+}
+.is-small-screen .mdl-layout__content {
+    margin-top: 56px;
+}
+.mdl-layout__header {
+    position: fixed;
+}
+.mdl-layout__obfuscator {
+    position: fixed;
+}
 
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
   font-size:1em;
 }
 
+.male-color {
+  color: #069FE6;
+}
+.female-color {
+  color: #FF51A6;
+}
+
+.both-color {
+  color: #8378C6;
+}
+
+.gender-icons {
+  font-size:22px;
+  padding-top: 8px;
+}
 .demo-avatar {
   width: 80px;
   height: 80px;
@@ -126,6 +146,10 @@ html, body {
   padding-top:1em;
 }
 
+.pl-1 {
+  padding-left:1em;
+}
+
 .bold {
   font-weight:700;
 }
@@ -158,10 +182,44 @@ html, body {
   align-items:center;
 }
 
+.transition1s {
+  transition: all 1s;
+}
+
 #graphic-container {
   width:100%;
   padding:0em 0em;
   display:block;
+}
+
+#render_window {
+  background-color: #FFFFFF;
+  border:1px solid grey;
+  border-radius:8px;
+  width:100%;
+  max-width:400px;
+  position:relative;
+  margin:auto;
+}
+
+#scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width:100%;
+  height:100%;
+}
+
+#diagram {
+  width:100%;
+  max-width:360px;
+  height:320px;
+  margin:auto;
+  position:relative;
+  flex: 0 0 auto;
+  /* background-color: #FFFFFF; */
+  /* border:1px solid #EBEBEB;; */
+  transition: transform 0.2s;
 }
 @media screen and (min-width: 640px) {
   #graphic-container {
@@ -169,18 +227,50 @@ html, body {
   }
 }
 
+.instruction-container {
+    text-align:center;
+    width:100%;
+    padding-bottom: 0.5em;
+}
+
 .instruction {
-  font-size:1.1em;
+  font-size:1em;
   font-weight:300;
-  text-align:center;
   width:100%;
   padding:1em 0em;
 }
 
-#view-btn-group {
-width:100%;
-text-align:center;
-margin-bottom:1em;
+/* #timing {
+  font-weight:700;
+} */
+
+#top-controls {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  /* text-align:center; */
+  margin-top:0.5em;
+}
+
+#camera-controls {
+  margin-top:8px;
+  padding:4px 0px;
+  background-color:#F8F8F8;
+}
+
+.gearTransition {
+  transition:transform 0.5s;
+}
+.gearTurn {
+  transform:rotate(45deg);
+}
+
+.next-prev {
+  width:100%;
+  text-align:center;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
 }
 
 .controls {
@@ -194,21 +284,25 @@ margin-bottom:1em;
   font-weight:300;
 }
 
-#diagram {
-  width:100%;
-  max-width:360px;
-  height:320px;
-  border:1px solid grey;
-  border-radius:8px;
-  margin:auto;
-  position:relative;
+#LOD {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* position:absolute;
+  bottom:88px;
+  right:16px; */
+  opacity:0.4;
+  padding-left:16px;
+  padding-right:0px;
+  margin-right:-4px;
 }
 
-.LOD {
-  width: 80px;
-  position:absolute;
-  right:12px;
-  top:8px;
+#LOD i {
+  font-size:2em;
+}
+
+#LOD p {
+  height:8px;
 }
 
 .M {
@@ -245,11 +339,12 @@ margin-bottom:1em;
   opacity:0.3;
 }
 
-.next-prev {
-  width:100%;
-  text-align:center;
-  position:absolute;
-  bottom:5px;
+.mFootworkOn {
+  fill: #003C78;
+}
+
+.lFootworkOn {
+  fill: #E10071;
 }
 
 #pf-figures {

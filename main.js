@@ -1,38 +1,43 @@
-//
-// Vue.component('figure-item', {
-//   props:['figure'],
-//   template: `<li class="mdl-list__item" v:on-click="$emit('change')">
-//   <span class="mdl-list__item-primary-content">
-//   {{figure.name}}
-//   </span>
-//   </li>`
-// })
 const app = new Vue({
   el: '#app',
   data: {
+    style: 'Standard',
+    dance: 'Waltz',
+    lead_active: true,
+    follow_active: true,
     current_figure: waltz_all_figures[0],
+    step: 0,
+    step_total: 999,
+    foot_width: 20,
+    ml: [0, 0, 0, 0.2],
+    mr: [0, 0, 0, 1],
+    ll: [0, 0, 0, 1],
+    lr: [0, 0, 0, 0.2],
     text: null,
     instruction_both: 'both_text',
     instruction_lead: 'lead text',
     instruction_follow: 'follow text',
-    ml: [0, 0, 0, 0.3],
-    mr: [0, 0, 0, 1],
-    ll: [0, 0, 0, 1],
-    lr: [0, 0, 0, 0.3],
     preceding_figures: waltz_all_figures[0].preceding_figures,
     following_figures: waltz_all_figures[0].following_figures,
     newcomer_figures: 'Newcomer_figures',
     bronze_figures: 'Bronze_figures',
     silver_figures: 'Silver_figures',
     gold_figures: 'Gold_figures',
-    lead_active: true,
-    follow_active: true,
-    step: 0,
-    step_total: 999,
-    style: 'Standard',
-    dance: 'Waltz',
-    foot_width: 20,
     playing: false,
+    rewinding: false,
+    replaying: false,
+    LODToggle: true,
+    LODFacing: 0, // 0 is facing right
+    scale: 100,
+    moreControls:true,
+  },
+  computed: {
+    LODStyle: function() {
+      return {transform: `rotate(${this.LODFacing}deg)`};
+    },
+    DiagramStyle: function() {
+      return {transform: `rotate(${this.LODFacing}deg) scale(${this.scale / 100})`};
+    },
   },
   methods: {
     change_dance: function(dance) {
@@ -104,18 +109,20 @@ const app = new Vue({
           break;
       }
     },
-    change_figure: function(newFigure) {
+    change_figure: async function(newFigure) {
       this.current_figure = newFigure;
       this.step_total = newFigure.data.length;
       this.preceding_figures = newFigure.preceding_figures;
       this.following_figures = newFigure.following_figures;
       this.replay();
+      // await this.wait(2000);
+      // this.play();
     },
     play: async function() {
-      playing = true;
-      while (this.step < this.step_total-1 && playing == true) {
+      this.playing = true;
+      while (this.step < this.step_total-1 && this.playing == true) {
         this.next();
-        await this.wait(2000);
+        await this.wait(1500);
       }
     },
     wait: function(ms) {
@@ -124,105 +131,73 @@ const app = new Vue({
     next: function() {
       if (app.step < app.step_total-1) {
         app.step += 1;
+        const newData = this.current_figure.data[app.step];
 
-        app.instruction_both = this.current_figure.data[app.step].text[0];
-        app.instruction_lead = this.current_figure.data[app.step].text[1];
-        app.instruction_follow = this.current_figure.data[app.step].text[2];
-        // const all_feet = [app.ml, app.mr, app.ll, app.lr];
+        app.instruction_both = newData.text[0];
+        app.instruction_lead = newData.text[1];
+        app.instruction_follow = newData.text[2];
 
-        app.ml = this.current_figure.data[app.step].ml.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ml[idx];
-          } else {
-            return value;
-          }
+        app.ml = newData.ml.map((value, idx) => {
+          return (idx < 4) ? value + app.ml[idx] : value;
+        });
+        app.mr = newData.mr.map((value, idx) => {
+          return (idx < 4) ? value + app.mr[idx] : value;
+        });
+        app.ll = newData.ll.map((value, idx) => {
+          return (idx < 4) ? value + app.ll[idx] : value;
+        });
+        app.lr = newData.lr.map((value, idx) => {
+          return (idx < 4) ? value + app.lr[idx] : value;
         });
 
-        app.mr = this.current_figure.data[app.step].mr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.mr[idx];
-          } else {
-            return value;
-          }
-        });
-        app.ll = this.current_figure.data[app.step].ll.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.ll[idx];
-          } else {
-            return value;
-          }
-        });
-        app.lr = this.current_figure.data[app.step].lr.map((value, idx) => {
-          if (idx < 4) {
-            return isNaN(value) ? value : value + app.lr[idx];
-          } else {
-            return value;
-          }
-        });
-
-        this.update_feet_position();
+        this.update_foot_position();
       }
     },
     prev: function() {
       if (app.step > 0) {
-        playing = false;
+        this.playing = false;
+        this.rewinding = true;
+        let newData = this.current_figure.data[app.step];
 
-        app.instruction_both = this.current_figure.data[app.step].text[0];
-        app.instruction_lead = this.current_figure.data[app.step].text[1];
-        app.instruction_follow = this.current_figure.data[app.step].text[2];
-
-        app.ml = this.current_figure.data[app.step].ml.map(
-            function(value, idx) {
-              if (idx < 4) {
-                return isNaN(value) ? value : app.ml[idx] - value;
-              } else {
-                return value;
-              }
-            });
-
-        app.mr = this.current_figure.data[app.step].mr.map(
-            function(value, idx) {
-              if (idx < 4) {
-                return isNaN(value) ? value : app.mr[idx] - value;
-              } else {
-                return value;
-              }
-            });
-
-        app.ll = this.current_figure.data[app.step].ll.map(
-            function(value, idx) {
-              if (idx < 4) {
-                return isNaN(value) ? value : app.ll[idx] - value;
-              } else {
-                return value;
-              }
-            });
-        app.lr = this.current_figure.data[app.step].lr.map(
-            function(value, idx) {
-              if (idx < 4) {
-                return isNaN(value) ? value : app.lr[idx] - value;
-              } else {
-                return value;
-              }
-            });
+        app.ml = newData.ml.map((value, idx) => {
+          return (idx < 4) ? app.ml[idx] - value: value;
+        });
+        app.mr = newData.mr.map((value, idx) => {
+          return (idx < 4) ? app.mr[idx] - value : value;
+        });
+        app.ll = newData.ll.map((value, idx) => {
+          return (idx < 4) ? app.ll[idx] - value : value;
+        });
+        app.lr = newData.lr.map((value, idx) => {
+          return (idx < 4) ? app.lr[idx] - value : value;
+        });
 
         app.step -= 1;
-        this.update_feet_position();
+        newData = this.current_figure.data[app.step];
+        app.instruction_both = newData.text[0];
+        app.instruction_lead = newData.text[1];
+        app.instruction_follow = newData.text[2];
+
+        this.update_foot_position();
+        this.rewinding = false;
       }
     },
     replay: function() {
       playing = false;
       app.step = 0;
+      const newData = this.current_figure.data[0];
 
-      app.instruction_both = this.current_figure.data[0].text[0];
-      app.instruction_lead = this.current_figure.data[0].text[1];
-      app.instruction_follow = this.current_figure.data[0].text[2];
+      app.instruction_both = newData.text[0];
+      app.instruction_lead = newData.text[1];
+      app.instruction_follow = newData.text[2];
 
-      app.ml = this.current_figure.data[0].ml;
-      app.mr = this.current_figure.data[0].mr;
-      app.ll = this.current_figure.data[0].ll;
-      app.lr = this.current_figure.data[0].lr;
-      this.update_feet_position();
+      app.ml = newData.ml;
+      app.mr = newData.mr;
+      app.ll = newData.ll;
+      app.lr = newData.lr;
+
+      this.update_foot_position();
+      this.replaying = false;
     },
     lead: function() {
       app.lead_active = true;
@@ -236,44 +211,88 @@ const app = new Vue({
       app.lead_active = true;
       app.follow_active = true;
     },
-    moveFoot: function(feet, data) {
-      if (data[4] != undefined ) {
-        feet.style.transformOrigin = data[4];
-      } else {
-        feet.style.transformOrigin = 'center';
+    moveFoot: function(foot, data) {
+      const hasTransition = ((data[5] != undefined) && (this.replaying == false));
+      const isPercent = (this.current_figure.data[app.step].type == 'percent');
+
+      foot.style.left = isPercent ? `${data[0]}%` : `${data[0]}px`;
+      foot.style.top = isPercent ? `${data[1]}%` : `${data[1]}px`;
+      foot.style.transform = `rotate(${data[2]}deg)`;
+      foot.style.opacity = `${data[3]}`;
+      foot.style.transformOrigin = (data[4] != undefined ) ? data[4] : 'center';
+      foot.style.transition = this.replaying ? 'all 0s': hasTransition ? data[5] : 'all 2s';
+
+      // SHOW FOOTWORK
+      if ((data[6] != undefined) &&
+          (this.rewinding == false) &&
+          (this.replaying == false)) {
+        this.show_footwork(foot, data[6]);
       }
-      console.log(data);
-      if (data[5] != undefined ) {
-        feet.style.transition = data[5];
-        console.log(data[5]);
-      } else {
-        feet.style.transition = 'all 2s';
-      }
-      if (this.current_figure.data[app.step].type == 'percent') {
-        feet.style.left = `${data[0]}%`;
-        feet.style.top = `${data[1]}%`;
-      } else {
-        feet.style.left = `${data[0]}px`;
-        feet.style.top = `${data[1]}px`;
-      }
-      feet.style.transform = `rotate(${data[2]}deg)`;
-      feet.style.opacity = `${data[3]}`;
     },
-    update_feet_position: function() {
+    update_foot_position: function() {
       app.moveFoot(mlSvg, app.ml);
       app.moveFoot(mrSvg, app.mr);
       app.moveFoot(llSvg, app.ll);
       app.moveFoot(lrSvg, app.lr);
     },
-    set_foot_width: function(px) {
-      mlSvg.style.width = px + 'px';
-      mrSvg.style.width = px + 'px';
-      llSvg.style.width = px + 'px';
-      lrSvg.style.width = px + 'px';
+    show_footwork: async function(foot, footwork) {
+      const heel = foot.children[0].children[0].children[1];
+      const toe = foot.children[0].children[0].children[0];
+      const accentColor = foot.classList.contains('M') ? '#003C78':'#E10071';
+      const normalColor = foot.classList.contains('M') ? '#069FE6':'#FF51A6';
+      await this.wait(1000);
+      switch (footwork) {
+        case 'HT':
+          heel.style.fill = accentColor;
+          await this.wait(500);
+          toe.style.fill = accentColor;
+          await this.wait(50);
+          heel.style.fill = normalColor;
+          await this.wait(1000);
+          toe.style.fill = normalColor;
+          break;
+        case 'TH':
+          toe.style.fill = accentColor;
+          await this.wait(500);
+          heel.style.fill = accentColor;
+          await this.wait(50);
+          toe.style.fill = normalColor;
+          await this.wait(1000);
+          heel.style.fill = normalColor;
+          break;
+        case 'T&H':
+          toe.style.fill = accentColor;
+          await this.wait(500);
+          heel.style.fill = accentColor;
+          await this.wait(1000);
+          toe.style.fill = normalColor;
+          heel.style.fill = normalColor;
+          break;
+        case 'T':
+          toe.style.fill = accentColor;
+          await this.wait(1500);
+          toe.style.fill = normalColor;
+          break;
+        case 'THT':
+          toe.style.fill = accentColor;
+          await this.wait(300);
+          heel.style.fill = accentColor;
+          await this.wait(50);
+          toe.style.fill = normalColor;
+          await this.wait(300);
+          heel.style.fill = normalColor;
+          await this.wait(50);
+          toe.style.fill = accentColor;
+          await this.wait(800);
+          toe.style.fill = normalColor;
+          break;
+      }
+    },
+    LODRotateLeft: function() {
+      this.LODFacing -= 45;
     },
   },
 });
-
 
 const mlSvg = document.getElementById('ML');
 const mrSvg = document.getElementById('MR');
@@ -281,9 +300,7 @@ const llSvg = document.getElementById('LL');
 const lrSvg = document.getElementById('LR');
 
 // Start
-app.change_dance('Slow Waltz');
-app.change_figure(waltz_all_figures[0]);
-
-// debug
-// app.change_dance('Viennese Waltz');
-// app.change_figure(vwaltz_all_figures[8]);
+window.onload = function() {
+  app.change_dance('Slow Waltz');
+  app.change_figure(waltz_all_figures[0]);
+};

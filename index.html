@@ -14,7 +14,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-85741607-3');
   </script>
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -77,28 +76,59 @@
               <h4 class="text-center bold">{{current_figure.name}}</h4>
             </div>
         </div>
-        <div id="view-btn-group">
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !follow_active }" id="btn-lead" v-on:click="lead()">
-            LEAD
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': !lead_active }" id="btn-follow" v-on:click="follow()">
-            FOLLOW
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--raised" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
-            BOTH
-          </button>
-        </div>
-        <div id="diagram">
-          <div class="LOD">
-            <svg viewBox="0 0 190 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="LOD-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
-                <path id="Line" d="M156,30.5 L107,30.5 L107,24.5 L156,24.5 L156,10.5 L190,27.5 L156,44.5 L156,30.5 Z" fill="#000000" fill-rule="nonzero"></path>
-                <text id="LOD" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="45" font-weight="400" fill="#000000">
-                  <tspan x="0.24" y="44">LOD</tspan>
-                </text>
-              </g>
-            </svg>
+        <div id="render_window">
+
+          <div id="top-controls">
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'male-color': !follow_active }" id="btn-lead" v-on:click="lead()">
+              <i class="fas fa-male gender-icons"></i>
+            </button>
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'female-color': !lead_active }" id="btn-follow" v-on:click="follow()">
+              <i class="fas fa-female gender-icons"></i>
+            </button>
+            <button class="no-padding mdl-button mdl-js-button" v-bind:class="{ 'mdl-button--colored': lead_active && follow_active }" id="btn-both" v-on:click="both()">
+              <i class="material-icons">
+              wc
+              </i>
+            </button>
+            <button class="no-padding mdl-button mdl-js-button" @click="moreControls = !moreControls">
+              <i class="material-icons gearTransition" :class="{'gearTurn': moreControls }">settings</i>
+            </button>
+
+            <!-- <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">Show LOD
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                  <input type="checkbox" id="switch-1" class="mdl-switch__input" v-model="LODToggle" checked>
+                  <span class="mdl-switch__label"></span>
+                </label>
+              </li>
+            </ul> -->
           </div>
+
+          <div id="camera-controls" class='d-flex-center' v-show="moreControls">
+            <div id="LOD" v-if="LODToggle">
+              <p>LOD</p>
+              <i class="material-icons transition1s" :style="LODStyle">
+              arrow_right_alt
+              </i>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" @click="LODFacing -= 45">
+              <i class="material-icons">
+                rotate_left
+              </i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" @click="LODFacing += 45">
+              <i class="material-icons">
+                rotate_right
+              </i>
+            </button>
+            <div class="d-flex-center">
+              <span>Zoom</span>
+            <input class="mdl-slider mdl-js-slider" type="range"
+              min="40" max="160" value="100" tabindex="20" v-model="scale">
+            </div>
+          </div>
+        <div id="scroll">
+        <div id="diagram" :style="DiagramStyle">
           <div class="M" id="ML" v-show="lead_active">
             <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="ML-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -114,11 +144,11 @@
           <div class="M" id="MR" v-show="lead_active">
             <svg viewBox="0 0 70 185" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="MR-Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
+                    <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
+                </g>
                   <g id="MR-H" transform="translate(32.000000, 156.000000) scale(-1, 1) translate(-32.000000, -156.000000) translate(5.000000, 127.000000)" fill="#069FE6" fill-rule="nonzero">
                       <path d="M0,6.56572385 C0,6.56572385 0.125093888,14.4845192 1.47905126,26.8913712 C3.73809971,47.4240459 14.5403249,60.141439 31.3764905,57.701474 C51.3326448,54.8178791 55.7256478,40.5773564 53.4592409,20.0372879 C52.0905666,7.62304199 49.654915,0 49.654915,0 L0,6.56572385 Z" id="Path"></path>
-                  </g>
-                  <g id="MR-T" transform="translate(35.000000, 54.000000) scale(-1, 1) translate(-35.000000, -54.000000) " fill="#069FE6" fill-rule="nonzero">
-                      <path d="M35.6263064,0.0344372048 C49.034781,-0.73455534 66.8329347,11.1920837 69.8150143,54.2919395 C71.1500572,73.5312624 64.9537167,88.5556356 61.0284003,101.004609 C59.4466646,106.010315 57.4948899,107.838486 53.3011138,106.83009 C41.8879479,104.06607 22.6168935,104.929373 10.3185361,107.845741 C6.90111644,108.658261 5.04366542,106.12639 4.48497897,103.405897 C-12.2393359,22.1175816 22.2250874,0.810684396 35.6263064,0.0344372048 Z" id="Path"></path>
                   </g>
               </g>
             </svg>
@@ -148,25 +178,27 @@
               </g>
             </svg>
           </div>
-          <div class="next-prev">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">replay</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
-          </div>
-        </div>
+        </div> <!-- scroll -->
 
-          <div class="instruction">
+        </div> <!-- render window -->
+          <div class="instruction-container">
           <span class="instruction" v-show="!follow_active"> {{instruction_lead}} </span>
           <span class="instruction" v-show="!lead_active"> {{instruction_follow}} </span>
-          <span class="instruction" v-show="lead_active && follow_active"> {{instruction_both}} </span>
+          <span class="instruction" id="timing" v-show="lead_active && follow_active"> {{instruction_both}} </span>
           </div>
+        <div class="next-prev">
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="replay"><i class="material-icons">skip_previous</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="replay" v-on:click="play"><i class="material-icons">play_arrow</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="prev" v-on:click="prev" :disabled="step==0"><i class="material-icons">fast_rewind</i></button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="next" v-on:click="next" :disabled="step==step_total-1"><i class="material-icons">fast_forward</i></button>
+        </div>
+      </div>
 
       </div> <!--graphic container-->
 
 <div id="pf-figures">
       <div >
-      <h5 class="list-head">Steps Before:</h5>
+      <h5 class="list-head">Previous:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in preceding_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">
@@ -176,7 +208,7 @@
       </ul>
       </div>
       <div >
-      <h5 class="list-head">Steps After:</h5>
+      <h5 class="list-head">Next:</h5>
       <ul class="demo-list-item mdl-list" id="newcomer">
         <li class="mdl-list__item" v-for="figure in following_figures" v-on:click="change_figure(figure)">
           <span class="mdl-list__item-primary-content">
