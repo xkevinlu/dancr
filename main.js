@@ -29,7 +29,7 @@ const app = new Vue({
     LODToggle: true,
     LODFacing: 0, // 0 is facing right
     scale: 100,
-    moreControls:true,
+    moreControls: true,
   },
   computed: {
     LODStyle: function() {
