@@ -124,6 +124,7 @@ const app = new Vue({
         this.next();
         await this.wait(1500);
       }
+      playing = false;
     },
     wait: function(ms) {
       return new Promise( (resolve) => setTimeout(resolve, ms));
@@ -183,7 +184,8 @@ const app = new Vue({
       }
     },
     replay: function() {
-      playing = false;
+      this.playing = false;
+      this.replaying = true;
       app.step = 0;
       const newData = this.current_figure.data[0];
 
