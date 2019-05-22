@@ -171,19 +171,19 @@ const rf_closed_change_data = [
   {
     text: [
       'Move towards DC',
-      'RF forward (HT)',
-      'LF back (TH)',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [lgStep, -lgStep, 0, 0.8, '', '', 'HT'],
-    ll: [lgStep, -lgStep, 0, 0.8, '', '', 'TH'],
+    mr: [lgStep, -lgStep, 0, 0.8],
+    ll: [lgStep, -lgStep, 0, 0.8],
     lr: [0, 0, 0, -0.8],
   },
   {
     text: [
       'Collect feet under body',
-      'LF collects under',
-      'RF collects under',
+      'Begin with weight on left foot',
+      'Begin with weight on right foot',
     ],
     ml: [lgStep, -lgStep, 0, 0],
     mr: [0, 0, 0, 0],
@@ -196,10 +196,10 @@ const rf_closed_change_data = [
       '2. LF side (T)',
       '2. RF side (T)',
     ],
-    ml: [-mdStep, -mdStep, 0, 0.8, '', '', 'T'],
+    ml: [-mdStep, -mdStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [-mdStep, -mdStep, 0, 0.8, '', '', 'T'],
+    lr: [-mdStep, -mdStep, 0, 0.8],
   },
   {
     text: [
@@ -208,8 +208,8 @@ const rf_closed_change_data = [
       '3. LF close to RF (T)',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [-mdStep-5, -mdStep-5, 0, 0.8, '', '', 'T&H'],
-    ll: [-mdStep-5, -mdStep-5, 0, 0.8, '', '', 'T&H'],
+    mr: [-mdStep-5, -mdStep-5, 0, 0.8],
+    ll: [-mdStep-5, -mdStep-5, 0, 0.8],
     lr: [0, 0, 0, -0.8],
   },
 ];
@@ -232,10 +232,10 @@ const lf_closed_change_data = [
       '1. LF forward (HT)',
       '1. RF Back (TH)',
     ],
-    ml: [lgStep, lgStep, 0, 0.8, '', '', 'HT'],
+    ml: [lgStep, lgStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [lgStep, lgStep, 0, 0.8, '', '', 'TH'],
+    lr: [lgStep, lgStep, 0, 0.8],
   },
   {
     text: [
@@ -256,8 +256,8 @@ const lf_closed_change_data = [
       '2. RF side (T)',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [-mdStep, mdStep, 0, 0.8, '', '', 'T'],
-    ll: [-mdStep, mdStep, 0, 0.8, '', '', 'T'],
+    mr: [-mdStep, mdStep, 0, 0.8],
+    ll: [-mdStep, mdStep, 0, 0.8],
     lr: [0, 0, 0, -0.8],
   },
   {
@@ -266,10 +266,10 @@ const lf_closed_change_data = [
       '3. RF close to LF (TH),  lower end of 3',
       '3. LF close to RF (TH),  lower end of 3',
     ],
-    ml: [-mdStep-5, mdStep+5, 0, 0.8, '', '', 'T&H'],
+    ml: [-mdStep-5, mdStep+5, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [-mdStep-5, mdStep+5, 0, 0.8, '', '', 'T&H'],
+    lr: [-mdStep-5, mdStep+5, 0, 0.8],
   },
 ];
 
@@ -280,10 +280,10 @@ const whisk_data = [
       'Begin with weight on right foot',
       'Begin with weight on left foot',
     ],
-    ml: [165, 20, 135, 0.2],
+    ml: [175, 10, 135, 0.2],
     mr: [145, 40, 135, 1],
     ll: [170, 90, -45, 1],
-    lr: [190, 70, -45, 0.2],
+    lr: [200, 60, -45, 0.2],
   },
   {
     text: [
@@ -291,10 +291,10 @@ const whisk_data = [
       '1. LF fwd (HT),  commence to rise end of 1',
       '1. RF back (TH),  commence to rise end of 1 , NFR',
     ],
-    ml: [mdStep, mdStep, 0, 0.8, '', '', 'HT'],
+    ml: [mdStep, mdStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [mdStep, mdStep, 0, 0.8, '', '', 'TH'],
+    lr: [mdStep, mdStep, 0, 0.8],
   },
   {
     text: [
@@ -303,31 +303,31 @@ const whisk_data = [
       '1&. LF closes to RF without weight',
     ],
     ml: [0, 0, 0, 0],
-    mr: [mdStep, mdStep, 0, 0],
-    ll: [mdStep, mdStep, 0, 0],
+    mr: [mdStep+10, mdStep-10, 0, 0],
+    ll: [mdStep+10, mdStep-10, 0, 0],
     lr: [0, 0, 0, 0],
   },
   {
     text: [
       '2. Moving together towards wall',
       '2. RF to side and slightly fwd (T),  cont. to rise',
-      '2. LF to side and slightly back (T),  cont. to rise',
+      '2. LF crosses behind RF in PP (T),  cont. to rise',
     ],
     ml: [0, 0, 0, -0.8],
-    mr: [-smStep, xsStep, 0, 0.8, '', '', 'T'],
-    ll: [-lgStep, xsStep, 90, 0.8, '', '', 'T'],
+    mr: [-smStep, xsStep, 0, 0.8],
+    ll: [-lgStep, xsStep, 90, 0.8],
     lr: [-10, 10, 90, -0.8],
   },
   {
     text: [
       '3. Whisk to PP,  crossing behind',
+      '3. RF closes to LF (T),  cont. to rise',
       '3. RF crosses behind LF in PP (TH),  cont. to rise',
-      '3. LF crosses behind RF in PP (TH),  cont. to rise',
     ],
-    ml: [-xlStep, smStep, 0, 0.8, '', '', 'T&H'],
+    ml: [-xlStep, smStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [-xlStep-30, smStep, 0, 0.8, '', '', 'T&H'],
+    lr: [-xlStep-30, smStep, 0, 0.8],
   },
 ];
 
@@ -418,10 +418,10 @@ const prep_step_data = [
       '1-2-3. LF side',
       '1-2-3. RF side',
     ],
-    ml: [xsStep, -xsStep, 0, 0.8, '', '', 'T&H'],
+    ml: [xsStep, -xsStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [xsStep, -xsStep, 0, 0.8, '', '', 'T&H'],
+    lr: [xsStep, -xsStep, 0, 0.8],
   },
   {
     text: [
@@ -429,10 +429,10 @@ const prep_step_data = [
       '1-2. LF close to RF',
       '1-2. RF close to LF',
     ],
-    ml: [-xsStep, xsStep, 0, -0.8, '', '', 'T'],
+    ml: [-xsStep, xsStep, 0, -0.8],
     mr: [0, 0, 0, 0.8],
     ll: [0, 0, 0, 0.8],
-    lr: [-xsStep, xsStep, 0, -0.8, '', '', 'T'],
+    lr: [-xsStep, xsStep, 0, -0.8],
   },
   {
     text: [
@@ -440,10 +440,10 @@ const prep_step_data = [
       '3. LF fwd (HT)',
       '3. RF fwd (TH)',
     ],
-    ml: [mdStep, mdStep, 0, 0.8, '', '', 'HT'],
+    ml: [mdStep, mdStep, 0, 0.8],
     mr: [0, 0, 0, -0.8],
     ll: [0, 0, 0, -0.8],
-    lr: [mdStep, mdStep, 0, 0.8, '', '', 'TH'],
+    lr: [mdStep, mdStep, 0, 0.8],
   },
   {
     text: [
